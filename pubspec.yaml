@@ -54,11 +54,19 @@ dependencies:
   clock: ^1.1.1
   fake_async: ^1.3.1
   package_info_plus: ^8.1.0
-  get_it: ^8.0.2
+
+  # Routing
   auto_route: ^9.2.2
-  injectable: ^2.5.0
+
+  # UI
   shadcn_ui: ^0.13.4
+  lottie: ^3.1.3
   google_fonts: ^6.2.1
+
+  # DI
+  injectable: ^2.5.0
+  get_it: ^8.0.2
+
 
 dev_dependencies:
   # Testing
@@ -86,6 +94,8 @@ flutter:
   assets:
     # Add assets from the images directory to the application.
     - assets/images/
+    - assets/lottie/
+
 
 flutter_gen:
   output: lib/src/core/constant/generated

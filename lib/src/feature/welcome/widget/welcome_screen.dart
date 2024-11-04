@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:employee_management/src/core/routes/app_route.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
@@ -114,7 +115,7 @@ class WelcomeScreen extends StatelessWidget {
                       size: ShadButtonSize.lg,
                       width: double.infinity,
                       onPressed: () {
-                        // context.router.push(DashboardRoute());
+                        context.router.push(const SignInRoute());
                       },
                       child: const Text("I'm A Manager"),
                     ),
@@ -122,7 +123,7 @@ class WelcomeScreen extends StatelessWidget {
                       size: ShadButtonSize.lg,
                       width: double.infinity,
                       onPressed: () {
-                        // context.router.push(DashboardRoute());
+                        context.router.push(const SignInRoute());
                       },
                       child: const Text("I'm An Employee"),
                     ),

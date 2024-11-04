@@ -5,7 +5,6 @@ import 'package:employee_management/src/feature/initialization/logic/app_runner.
 
 void main() {
   final logger = DefaultLogger(const LoggingOptions(useDebugPrint: true));
-
   runZonedGuarded(
     () => AppRunner(logger).initializeAndRun(),
     logger.logZoneError,
