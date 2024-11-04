@@ -1,5 +1,5 @@
-import 'package:sizzle_starter/src/feature/settings/data/app_settings_datasource.dart';
-import 'package:sizzle_starter/src/feature/settings/model/app_settings.dart';
+import 'package:employee_management/src/feature/settings/data/app_settings_datasource.dart';
+import 'package:employee_management/src/feature/settings/model/app_settings.dart';
 
 /// {@template app_settings_repository}
 /// [AppSettingsRepository] sets and gets app settings.

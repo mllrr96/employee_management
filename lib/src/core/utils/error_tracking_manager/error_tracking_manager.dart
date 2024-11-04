@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:meta/meta.dart';
-import 'package:sizzle_starter/src/core/utils/logger.dart';
+import 'package:employee_management/src/core/utils/logger.dart';
 
 /// {@template error_tracking_manager}
 /// A class which is responsible for enabling error tracking.

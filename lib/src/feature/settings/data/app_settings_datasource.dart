@@ -1,10 +1,10 @@
 import 'dart:ui';
 
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sizzle_starter/src/core/utils/persisted_entry.dart';
-import 'package:sizzle_starter/src/feature/initialization/model/app_theme.dart';
-import 'package:sizzle_starter/src/feature/settings/data/theme_mode_codec.dart';
-import 'package:sizzle_starter/src/feature/settings/model/app_settings.dart';
+import 'package:employee_management/src/core/utils/persisted_entry.dart';
+import 'package:employee_management/src/feature/initialization/model/app_theme.dart';
+import 'package:employee_management/src/feature/settings/data/theme_mode_codec.dart';
+import 'package:employee_management/src/feature/settings/model/app_settings.dart';
 
 /// {@template app_settings_datasource}
 /// [AppSettingsDatasource] sets and gets app settings.

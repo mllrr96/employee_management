@@ -1,9 +1,9 @@
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:sizzle_starter/src/core/constant/config.dart';
-import 'package:sizzle_starter/src/core/utils/error_tracking_manager/error_tracking_manager.dart';
-import 'package:sizzle_starter/src/core/utils/logger.dart';
-import 'package:sizzle_starter/src/feature/initialization/logic/composition_root.dart';
-import 'package:sizzle_starter/src/feature/settings/bloc/app_settings_bloc.dart';
+import 'package:employee_management/src/core/constant/config.dart';
+import 'package:employee_management/src/core/utils/error_tracking_manager/error_tracking_manager.dart';
+import 'package:employee_management/src/core/utils/logger.dart';
+import 'package:employee_management/src/feature/initialization/logic/composition_root.dart';
+import 'package:employee_management/src/feature/settings/bloc/app_settings_bloc.dart';
 
 /// {@template dependencies_container}
 /// Composed dependencies from the [CompositionRoot].

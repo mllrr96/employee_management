@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:sizzle_starter/src/core/utils/extensions/context_extension.dart';
-import 'package:sizzle_starter/src/feature/initialization/model/dependencies_container.dart';
+import 'package:employee_management/src/core/utils/extensions/context_extension.dart';
+import 'package:employee_management/src/feature/initialization/model/dependencies_container.dart';
 
 /// {@template dependencies_scope}
 /// A scope that provides composed [DependenciesContainer].

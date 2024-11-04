@@ -1,14 +1,12 @@
 import 'dart:async';
-
+import 'package:employee_management/src/core/di/di.dart';
+import 'package:employee_management/src/core/utils/app_bloc_observer.dart';
+import 'package:employee_management/src/core/utils/bloc_transformer.dart';
+import 'package:employee_management/src/core/utils/logger.dart';
+import 'package:employee_management/src/feature/initialization/widget/app.dart';
+import 'package:employee_management/src/feature/initialization/widget/initialization_failed_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sizzle_starter/src/core/constant/config.dart';
-import 'package:sizzle_starter/src/core/utils/app_bloc_observer.dart';
-import 'package:sizzle_starter/src/core/utils/bloc_transformer.dart';
-import 'package:sizzle_starter/src/core/utils/logger.dart';
-import 'package:sizzle_starter/src/feature/initialization/logic/composition_root.dart';
-import 'package:sizzle_starter/src/feature/initialization/widget/app.dart';
-import 'package:sizzle_starter/src/feature/initialization/widget/initialization_failed_app.dart';
 
 /// {@template app_runner}
 /// A class which is responsible for initialization and running the app.
@@ -27,6 +25,8 @@ final class AppRunner {
     // Preserve splash screen
     binding.deferFirstFrame();
 
+    await configureInjection();
+
     // Override logging
     FlutterError.onError = logger.logFlutterError;
     WidgetsBinding.instance.platformDispatcher.onError = logger.logPlatformDispatcherError;
@@ -34,13 +34,11 @@ final class AppRunner {
     // Setup bloc observer and transformer
     Bloc.observer = AppBlocObserver(logger);
     Bloc.transformer = SequentialBlocTransformer().transform;
-    const config = Config();
 
     Future<void> initializeAndRun() async {
       try {
-        final result = await CompositionRoot(config, logger).compose();
         // Attach this widget to the root of the tree.
-        runApp(App(result: result));
+        runApp(const App());
       } catch (e, stackTrace) {
         logger.error('Initialization failed', error: e, stackTrace: stackTrace);
         runApp(

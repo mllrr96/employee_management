@@ -1,6 +1,6 @@
 {
   "@@locale": "es",
-  "appTitle": "sizzle_starter",
+  "appTitle": "employee_management",
   "@appTitle": {
     "description": "El título de la aplicación"
   },
