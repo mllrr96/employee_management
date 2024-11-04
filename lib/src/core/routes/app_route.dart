@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 
-import 'app_route.gr.dart';
+import 'package:employee_management/src/core/routes/app_route.gr.dart';
 
 @AutoRouterConfig(replaceInRouteName: 'Screen|Page,Route')
 class AppRouter extends RootStackRouter {
@@ -14,7 +14,7 @@ class AppRouter extends RootStackRouter {
             // AutoRoute(page: SettingsRoute.page),
           ],
         ),
-        // AutoRoute(page: SignInRoute.page),
+        AutoRoute(page: WelcomeRoute.page),
         // AutoRoute(page: SelectCoursesRoute.page),
         // AutoRoute(page: SelectInstructorsRoute.page),
       ];

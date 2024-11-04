@@ -25,8 +25,6 @@ final class AppRunner {
     // Preserve splash screen
     binding.deferFirstFrame();
 
-    await configureInjection();
-
     // Override logging
     FlutterError.onError = logger.logFlutterError;
     WidgetsBinding.instance.platformDispatcher.onError = logger.logPlatformDispatcherError;
@@ -37,6 +35,7 @@ final class AppRunner {
 
     Future<void> initializeAndRun() async {
       try {
+        await configureInjection();
         // Attach this widget to the root of the tree.
         runApp(const App());
       } catch (e, stackTrace) {

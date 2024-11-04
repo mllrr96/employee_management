@@ -16,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
     // if (isAuthenticated) {
     //   context.router.replaceAll([HomeRoute()]);
     // } else {
-      context.router.replaceAll([const SignInRoute()]);
+      context.router.replaceAll([const WelcomeRoute()]);
     // }
     super.initState();
   }

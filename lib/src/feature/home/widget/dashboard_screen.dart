@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:employee_management/src/core/routes/app_route.gr.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -6,8 +7,9 @@ import 'package:flutter/material.dart';
 class DashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) => AutoTabsScaffold(
-      routes: [
-        // HomeRoute(),
+      routes: const [
+        HomeRoute(),
+        HomeRoute(),
         // SettingsRoute(),
       ],
       bottomNavigationBuilder: (_, tabsRouter) => BottomNavigationBar(
