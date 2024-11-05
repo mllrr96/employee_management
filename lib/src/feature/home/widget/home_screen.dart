@@ -1,4 +1,6 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:employee_management/src/feature/home/widget/check_widget.dart';
+import 'package:employee_management/src/feature/home/widget/employee_app_bar.dart';
 import 'package:flutter/material.dart';
 
 /// {@template home_screen}
@@ -16,23 +18,23 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) => Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.surface,
-      body: CustomScrollView(
-        slivers: [
-          const SliverAppBar(
-            title: Text('Welcome,')
+    appBar: EmployeeAppBar(),
+        backgroundColor: Theme.of(context).colorScheme.surface,
+        body: const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 24),
+          child: Column(
+            children: [
+              SizedBox(height: 24),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(child: CheckWidget(color: Color(0xffF6F5FB))),
+                  SizedBox(width: 10),
+                  Expanded(child: CheckWidget(color: Color(0xffF6F5FB))),
+                ],
+              )
+            ],
           ),
-          SliverFillRemaining(
-            child: Column(
-              children: [
-                TextButton.icon(
-                    onPressed: () {
-                      // context.router.push(SelectCoursesRoute());
-                    }, label: const Text('Generate Schedule'), icon: const Icon(Icons.schedule)),
-              ],
-            ),
-          )
-        ],
-      ),
-    );
+        )
+      );
 }

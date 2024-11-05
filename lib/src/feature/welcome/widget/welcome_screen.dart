@@ -40,7 +40,7 @@ class WelcomeScreen extends StatelessWidget {
                                 height: 100,
                                 color: const Color(0xffF2F0FE),
                                 icon: const Icon(
-                                  Icons.add_chart,
+                                  Icons.check,
                                   color: Color(0xffA191F7),
                                 ),
                                 text: 'Attendance Management',
