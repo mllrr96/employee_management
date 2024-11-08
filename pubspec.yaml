@@ -66,6 +66,7 @@ dependencies:
   # DI
   injectable: ^2.5.0
   get_it: ^8.0.2
+  cupertino_icons: ^1.0.8
 
 
 dev_dependencies:

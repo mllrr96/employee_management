@@ -4,7 +4,9 @@ import 'package:shadcn_ui/shadcn_ui.dart';
 
 class EmployeeAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
-  Widget build(BuildContext context) => Container(
+  Widget build(BuildContext context) {
+    final String todayDate = DateFormat('d, MMMM y').format( DateTime.now());
+    return Container(
         height: kToolbarHeight + MediaQuery.of(context).viewPadding.top,
         color: Colors.white,
         alignment: Alignment.bottomCenter,
@@ -29,7 +31,7 @@ class EmployeeAppBar extends StatelessWidget implements PreferredSizeWidget {
                       ),
                     ),
                     Text(
-                      '4th Oct 2024',
+                      todayDate,
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 14,
@@ -38,14 +40,13 @@ class EmployeeAppBar extends StatelessWidget implements PreferredSizeWidget {
                     ),
                   ],
                 ),
-                const ShadAvatar(
-                  Icons.access_alarm,
-                ),
+                const ShadAvatar( 'assets/images/avatar.png',size: Size(40, 40),),
               ],
             ),
           ),
         ),
       );
+  }
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);

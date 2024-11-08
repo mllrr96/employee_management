@@ -30,9 +30,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   Expanded(child: CheckWidget(color: Color(0xffF6F5FB))),
                   SizedBox(width: 10),
-                  Expanded(child: CheckWidget(color: Color(0xffF6F5FB))),
+                  Expanded(child: AddCheckWidget()),
                 ],
-              )
+              ),
+
             ],
           ),
         )
