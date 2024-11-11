@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:employee_management/src/core/constant/generated/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
@@ -83,7 +84,7 @@ class CheckType extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Lottie.asset('assets/lottie/NFC.json'),
+                  Lottie.asset(Assets.lottie.nfc),
                   const Text(
                     'Tap the NFC reader',
                     style: TextStyle(

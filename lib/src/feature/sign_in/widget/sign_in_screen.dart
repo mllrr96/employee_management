@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:employee_management/src/core/constant/generated/assets.gen.dart';
 import 'package:employee_management/src/core/routes/app_route.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -31,7 +32,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     child: Column(
                       children: [
                         Lottie.asset(
-                          'assets/lottie/account-2.json',
+                          Assets.lottie.account2,
                           repeat: false,
                           height: 350,
                         ),
