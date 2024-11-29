@@ -11,6 +11,7 @@ class AppRouter extends RootStackRouter {
           page: DashboardRoute.page,
           children: [
             AutoRoute(page: HomeRoute.page),
+            AutoRoute(page: AdminHomeRoute.page),
             AutoRoute(page: NotificationRoute.page),
             AutoRoute(page: ProfileRoute.page),
             AutoRoute(page: ScheduleRoute.page),
@@ -22,19 +23,22 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: UpdateProfileRoute.page),
         AutoRoute(page: ChangePasswordRoute.page),
         // AutoRoute(page: SelectInstructorsRoute.page),
+
+        AutoRoute(page: GenerateReportsRoute.page),
+        AutoRoute(page: ReportsPreviewRoute.page),
       ];
 
-  // @override
-  // List<AutoRouteGuard> get guards => [
-  //       AutoRouteGuard.simple(
-  //         (resolver, router) {
-  //           final isAuthenticated = getIt<SupabaseClient>().auth.currentSession != null;
-  //           if (isAuthenticated || resolver.routeName == SignInRoute.name) {
-  //             resolver.next();
-  //           } else {
-  //             router.pushAll([SignInRoute()]);
-  //           }
-  //         },
-  //       ),
-  //     ];
+// @override
+// List<AutoRouteGuard> get guards => [
+//       AutoRouteGuard.simple(
+//         (resolver, router) {
+//           final isAuthenticated = getIt<SupabaseClient>().auth.currentSession != null;
+//           if (isAuthenticated || resolver.routeName == SignInRoute.name) {
+//             resolver.next();
+//           } else {
+//             router.pushAll([SignInRoute()]);
+//           }
+//         },
+//       ),
+//     ];
 }

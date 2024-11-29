@@ -8,7 +8,8 @@ class DashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) => AutoTabsScaffold(
         routes: const [
-          HomeRoute(),
+          AdminHomeRoute(),
+          // HomeRoute(),
           ProfileRoute(),
           NotificationRoute(),
           ScheduleRoute(),
