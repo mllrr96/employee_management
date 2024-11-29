@@ -1,6 +1,7 @@
 import 'package:employee_management/src/core/constant/localization/localization.dart';
 import 'package:employee_management/src/core/routes/app_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
@@ -23,10 +24,10 @@ class MaterialContext extends StatelessWidget {
         localizationsDelegates: Localization.localizationDelegates,
         supportedLocales: Localization.supportedLocales,
         routerConfig: _appRouter.config(),
+        builder: EasyLoading.init(),
         theme: ShadThemeData(
-          colorScheme: const ShadVioletColorScheme.light(),
-          brightness: Brightness.light,
-          textTheme: ShadTextTheme.fromGoogleFont(GoogleFonts.inter)
-        ),
+            colorScheme: const ShadVioletColorScheme.light(),
+            brightness: Brightness.light,
+            textTheme: ShadTextTheme.fromGoogleFont(GoogleFonts.inter),),
       );
 }

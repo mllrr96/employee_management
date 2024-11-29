@@ -2,8 +2,13 @@ import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:employee_management/src/core/constant/generated/assets.gen.dart';
+import 'package:employee_management/src/core/routes/app_route.gr.dart';
+import 'package:employee_management/src/core/utils/loading.dart';
+import 'package:employee_management/src/feature/employee_home/bloc/check_bloc.dart';
 import 'package:employee_management/src/feature/employee_home/model/check.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
@@ -20,13 +25,17 @@ class AddCheckScreen extends StatefulWidget {
 class _AddCheckScreenState extends State<AddCheckScreen> {
   Check get check => widget.check;
 
+  bool get newCheck => check.id == null;
+
   String time = DateFormat('h:mm:ss').format(DateTime.now());
   String amOrPm = DateFormat('a').format(DateTime.now());
   late Timer timer;
+  late CheckBloc checkBloc;
 
   // update time every second
   @override
   void initState() {
+    checkBloc = CheckBloc.instance;
     timer = Timer.periodic(const Duration(seconds: 1), (Timer t) {
       setState(() {
         time = DateFormat('h:mm:ss').format(DateTime.now());
@@ -41,75 +50,168 @@ class _AddCheckScreenState extends State<AddCheckScreen> {
     super.dispose();
   }
 
-  @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          title: const Text('Add Check'),
+  void addCheck(CheckType checkType) {
+    if (newCheck) {
+      checkBloc.add(
+        CheckEvent.createCheck(
+          check.copyWith(
+            employeeId: FirebaseAuth.instance.currentUser!.uid,
+            start: DateTime.now(),
+            date: DateTime.now(),
+          ),
         ),
-        body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: Column(
-              children: [
-                const SizedBox(height: 40),
-                CheckType(title: 'Clock In', enabled: check.start == null),
-                const SizedBox(height: 20),
-                CheckType(
+      );
+    } else {
+      Check updatedCheck;
+      switch (checkType) {
+        case CheckType.checkIn:
+          updatedCheck = check.copyWith(
+            start: DateTime.now(),
+          );
+        case CheckType.checkOut:
+          updatedCheck = check.copyWith(
+            end: DateTime.now(),
+          );
+        case CheckType.breakStart:
+          updatedCheck = check.copyWith(
+            breakStart: DateTime.now(),
+          );
+        case CheckType.breakEnd:
+          updatedCheck = check.copyWith(
+            breakEnd: DateTime.now(),
+          );
+        default:
+          return;
+      }
+      checkBloc.add(
+        CheckEvent.updateCheck(
+          check.id!,
+          updatedCheck.copyWith(
+            employeeId: FirebaseAuth.instance.currentUser!.uid,
+          ),
+        ),
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) => BlocListener<CheckBloc, CheckState>(
+        bloc: checkBloc,
+        listener: (context, state) {
+          state.map(
+            initial: (_) {},
+            loaded: (_) {
+              dismissLoading();
+              context
+                  .read<CheckBloc>().add(const CheckEvent.loadTodayCheck());
+              context.router.popUntil(
+                (route) => route.settings.name == DashboardRoute.name,
+              );
+            },
+            loading: (_) {
+              loading();
+            },
+            empty: (_) {
+              context
+                  .read<CheckBloc>().add(const CheckEvent.loadTodayCheck());
+              context.maybePop();
+            },
+            error: (e) {
+              dismissLoading();
+              ShadToaster.of(context).show(
+                ShadToast.destructive(
+                  title: const Text('Failed to add check'),
+                  description: Text(e.message),
+                ),
+              );
+            },
+          );
+        },
+        child: Scaffold(
+          appBar: AppBar(
+            title: const Text(
+              'Add Check',
+              style: TextStyle(
+                fontSize: 16,
+                fontFamily: 'Roboto',
+              ),
+            ),
+          ),
+          body: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Column(
+                children: [
+                  const SizedBox(height: 40),
+                  CheckTypeWidget(
+                    title: 'Clock In',
+                    enabled: check.start == null,
+                    onTap: () => addCheck(CheckType.checkIn),
+                  ),
+                  const SizedBox(height: 20),
+                  CheckTypeWidget(
                     title: 'Clock Out',
-                    enabled: check.end == null && check.start != null),
-                const SizedBox(height: 20),
-                CheckType(
-                  title: 'Start Break',
-                  enabled: check.start != null && check.breakStart == null,
-                ),
-                const SizedBox(height: 20),
-                CheckType(
-                  title: 'End Break',
-                  enabled: check.breakStart != null && check.breakEnd == null,
-                ),
-                const Spacer(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: Text(
-                        time,
-                        style: const TextStyle(
-                          fontSize: 36,
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w500,
+                    enabled: check.end == null && check.start != null,
+                    onTap: () => addCheck(CheckType.checkOut),
+                  ),
+                  const SizedBox(height: 20),
+                  CheckTypeWidget(
+                    title: 'Start Break',
+                    enabled: check.start != null && check.breakStart == null,
+                    onTap: () => addCheck(CheckType.breakStart),
+                  ),
+                  const SizedBox(height: 20),
+                  CheckTypeWidget(
+                    title: 'End Break',
+                    enabled: check.breakStart != null && check.breakEnd == null,
+                    onTap: () => addCheck(CheckType.breakEnd),
+                  ),
+                  const Spacer(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          time,
+                          style: const TextStyle(
+                            fontSize: 36,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ),
-                    ),
-                    Flexible(
-                      child: Text(
-                        amOrPm,
-                        style: const TextStyle(
-                          fontSize: 36,
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w500,
+                      Flexible(
+                        child: Text(
+                          amOrPm,
+                          style: const TextStyle(
+                            fontSize: 36,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                const Spacer(),
-              ],
+                    ],
+                  ),
+                  const Spacer(),
+                ],
+              ),
             ),
           ),
         ),
       );
 }
 
-class CheckType extends StatelessWidget {
-  const CheckType({
+class CheckTypeWidget extends StatelessWidget {
+  const CheckTypeWidget({
     required this.title,
     super.key,
     this.enabled = true,
+    this.onTap,
   });
 
   final String title;
   final bool enabled;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) => AbsorbPointer(
@@ -128,7 +230,10 @@ class CheckType extends StatelessWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Lottie.asset(Assets.lottie.nfc),
+                      GestureDetector(
+                        onTap: onTap,
+                        child: Lottie.asset(Assets.lottie.nfc),
+                      ),
                       const Text(
                         'Tap the NFC reader',
                         style: TextStyle(

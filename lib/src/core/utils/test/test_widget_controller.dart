@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
 import 'package:employee_management/src/feature/initialization/model/dependencies_container.dart';
 import 'package:employee_management/src/feature/initialization/widget/dependencies_scope.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 /// A controller for testing widgets.
 class TestWidgetController {

@@ -1,6 +1,6 @@
-import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:employee_management/src/core/utils/analytics/analytics_reporter.dart';
 import 'package:employee_management/src/core/utils/logger.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 
 /// {@template firebase_analytics_reporter}
 /// An implementation of [AnalyticsReporter] that reports events to Firebase

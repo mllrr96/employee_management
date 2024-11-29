@@ -2,9 +2,9 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:isolate';
 
+import 'package:employee_management/src/core/rest_client/rest_client.dart';
 import 'package:meta/meta.dart';
 import 'package:path/path.dart' as p;
-import 'package:employee_management/src/core/rest_client/rest_client.dart';
 
 /// {@macro rest_client}
 @immutable

@@ -1,6 +1,6 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:employee_management/src/core/utils/extensions/string_extension.dart';
 import 'package:employee_management/src/core/utils/logger.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 /// [BlocObserver] which logs all bloc state changes, errors and events.
 class AppBlocObserver extends BlocObserver {

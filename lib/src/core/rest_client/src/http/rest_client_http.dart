@@ -1,11 +1,11 @@
 import 'package:cronet_http/cronet_http.dart' show CronetClient;
 import 'package:cupertino_http/cupertino_http.dart' show CupertinoClient;
-import 'package:flutter/foundation.dart' show TargetPlatform, defaultTargetPlatform;
-import 'package:http/http.dart' as http;
 import 'package:employee_management/src/core/rest_client/rest_client.dart';
 import 'package:employee_management/src/core/rest_client/src/http/check_exception_io.dart'
     if (dart.library.js_interop) 'package:employee_management/src/core/rest_client/src/http/check_exception_browser.dart';
 import 'package:employee_management/src/core/utils/logger.dart';
+import 'package:flutter/foundation.dart' show TargetPlatform, defaultTargetPlatform;
+import 'package:http/http.dart' as http;
 
 // coverage:ignore-start
 /// Creates an [http.Client] based on the current platform.

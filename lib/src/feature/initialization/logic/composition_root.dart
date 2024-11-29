@@ -1,7 +1,4 @@
 import 'package:clock/clock.dart';
-import 'package:flutter/foundation.dart';
-import 'package:package_info_plus/package_info_plus.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:employee_management/src/core/constant/config.dart';
 import 'package:employee_management/src/core/utils/error_tracking_manager/error_tracking_manager.dart';
 import 'package:employee_management/src/core/utils/error_tracking_manager/sentry_tracking_manager.dart';
@@ -10,6 +7,9 @@ import 'package:employee_management/src/feature/initialization/model/dependencie
 import 'package:employee_management/src/feature/settings/bloc/app_settings_bloc.dart';
 import 'package:employee_management/src/feature/settings/data/app_settings_datasource.dart';
 import 'package:employee_management/src/feature/settings/data/app_settings_repository.dart';
+import 'package:flutter/foundation.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 /// {@template composition_root}
 /// A place where all dependencies are initialized.

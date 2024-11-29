@@ -1,5 +1,5 @@
-import 'package:http/http.dart' as http;
 import 'package:employee_management/src/core/rest_client/rest_client.dart';
+import 'package:http/http.dart' as http;
 
 // coverage:ignore-start
 /// Checks the [http.ClientException] and tries to parse it.

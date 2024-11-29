@@ -13,7 +13,8 @@ class EmployeeAppBar extends StatefulWidget implements PreferredSizeWidget {
 
 class _EmployeeAppBarState extends State<EmployeeAppBar> {
   final String todayDate = DateFormat('d, MMMM y').format(DateTime.now());
-  final String name = FirebaseAuth.instance.currentUser?.displayName ?? '';
+  final String? name =
+      FirebaseAuth.instance.currentUser?.displayName?.split(' ')[0];
 
   String get timeOfDay {
     final hour = DateTime.now().hour;
@@ -43,7 +44,7 @@ class _EmployeeAppBarState extends State<EmployeeAppBar> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '$timeOfDay, $name',
+                      name != null ? '$timeOfDay, $name' : 'Good $timeOfDay',
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 20,

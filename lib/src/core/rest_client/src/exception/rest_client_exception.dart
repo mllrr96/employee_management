@@ -1,5 +1,5 @@
-import 'package:meta/meta.dart';
 import 'package:employee_management/src/core/rest_client/rest_client.dart';
+import 'package:meta/meta.dart';
 
 // coverage:ignore-start
 /// {@template rest_client_exception}

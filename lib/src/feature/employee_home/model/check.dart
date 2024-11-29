@@ -42,12 +42,31 @@ class Check {
   Map<String, dynamic> toJson() => {
         'id': id,
         'employeeid': employeeId,
-        'date': date?.toIso8601String(),
-        'start-time': start?.toIso8601String(),
-        'end-time': end?.toIso8601String(),
-        'start-break': breakStart?.toIso8601String(),
-        'end-break': breakEnd?.toIso8601String(),
+        'date': date,
+        'start-time': start,
+        'end-time': end,
+        'start-break': breakStart,
+        'end-break': breakEnd,
       };
+
+  Check copyWith({
+    String? id,
+    String? employeeId,
+    DateTime? date,
+    DateTime? start,
+    DateTime? end,
+    DateTime? breakStart,
+    DateTime? breakEnd,
+  }) =>
+      Check(
+        id: id ?? this.id,
+        employeeId: employeeId ?? this.employeeId,
+        date: date ?? this.date,
+        start: start ?? this.start,
+        end: end ?? this.end,
+        breakStart: breakStart ?? this.breakStart,
+        breakEnd: breakEnd ?? this.breakEnd,
+      );
 
   List<CheckDetails> get checkDetails {
     final List<CheckDetails> details = [];
@@ -75,6 +94,10 @@ class CheckDetails {
     required this.type,
     required this.time,
   });
+
+  CheckDetails.empty()
+      : type = CheckType.unknown,
+        time = DateTime.now();
 
   Color get color {
     switch (type) {
