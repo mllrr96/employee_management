@@ -43,41 +43,62 @@ class _AddCheckScreenState extends State<AddCheckScreen> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-      appBar: AppBar(
-        title: const Text('Add Check'),
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: Column(
-            children: [
-              const SizedBox(height: 40),
-              CheckType(title: 'Clock In', enabled: check.start == null),
-              const SizedBox(height: 20),
-              CheckType(title: 'Clock Out', enabled: check.end == null),
-              const SizedBox(height: 20),
-              CheckType(
-                title: 'Start Break',
-                enabled: check.start != null && check.breakStart == null,
-              ),
-              const SizedBox(height: 20),
-              CheckType(
-                title: 'End Break',
-                enabled: check.breakStart != null && check.breakEnd == null,
-              ),
-              const Spacer(),
-              Text(
-                '$time $amOrPm',
-                style: const TextStyle(
-                    fontSize: 36,
-                    fontFamily: 'Inter',
-                    fontWeight: FontWeight.w500),
-              ),
-              const Spacer(),
-            ],
+        appBar: AppBar(
+          title: const Text('Add Check'),
+        ),
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: Column(
+              children: [
+                const SizedBox(height: 40),
+                CheckType(title: 'Clock In', enabled: check.start == null),
+                const SizedBox(height: 20),
+                CheckType(
+                    title: 'Clock Out',
+                    enabled: check.end == null && check.start != null),
+                const SizedBox(height: 20),
+                CheckType(
+                  title: 'Start Break',
+                  enabled: check.start != null && check.breakStart == null,
+                ),
+                const SizedBox(height: 20),
+                CheckType(
+                  title: 'End Break',
+                  enabled: check.breakStart != null && check.breakEnd == null,
+                ),
+                const Spacer(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: Text(
+                        time,
+                        style: const TextStyle(
+                          fontSize: 36,
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                    Flexible(
+                      child: Text(
+                        amOrPm,
+                        style: const TextStyle(
+                          fontSize: 36,
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const Spacer(),
+              ],
+            ),
           ),
         ),
-      ));
+      );
 }
 
 class CheckType extends StatelessWidget {
@@ -124,7 +145,8 @@ class CheckType extends StatelessWidget {
                         child: const Text('Cancel'),
                       ),
                       SizedBox(
-                          height: MediaQuery.of(context).viewPadding.bottom),
+                        height: MediaQuery.of(context).viewPadding.bottom,
+                      ),
                     ],
                   ),
                 ),

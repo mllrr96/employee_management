@@ -7,13 +7,17 @@ import 'package:flutter/material.dart';
 class DashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) => AutoTabsScaffold(
-      routes: const [
-        HomeRoute(),
-        HomeRoute(),
-        // SettingsRoute(),
-      ],
-      bottomNavigationBuilder: (_, tabsRouter) => BottomNavigationBar(
+        routes: const [
+          HomeRoute(),
+          ProfileRoute(),
+          NotificationRoute(),
+          ScheduleRoute(),
+          SettingsRoute(),
+        ],
+        bottomNavigationBuilder: (_, tabsRouter) => BottomNavigationBar(
           currentIndex: tabsRouter.activeIndex,
+          selectedItemColor: Colors.blue,
+          unselectedItemColor: Colors.grey,
           onTap: tabsRouter.setActiveIndex,
           items: const [
             BottomNavigationBarItem(
@@ -21,10 +25,22 @@ class DashboardScreen extends StatelessWidget {
               icon: Icon(CupertinoIcons.home),
             ),
             BottomNavigationBarItem(
+              label: 'Profile',
+              icon: Icon(Icons.account_circle),
+            ),
+            BottomNavigationBarItem(
+              label: 'Notification',
+              icon: Icon(Icons.notifications_active),
+            ),
+            BottomNavigationBarItem(
+              label: 'Schedule',
+              icon: Icon(Icons.date_range),
+            ),
+            BottomNavigationBarItem(
               label: 'Settings',
               icon: Icon(CupertinoIcons.settings),
             ),
           ],
         ),
-    );
+      );
 }

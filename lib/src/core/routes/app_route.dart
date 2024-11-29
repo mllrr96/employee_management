@@ -11,7 +11,10 @@ class AppRouter extends RootStackRouter {
           page: DashboardRoute.page,
           children: [
             AutoRoute(page: HomeRoute.page),
-            // AutoRoute(page: SettingsRoute.page),
+            AutoRoute(page: NotificationRoute.page),
+            AutoRoute(page: ProfileRoute.page),
+            AutoRoute(page: ScheduleRoute.page),
+            AutoRoute(page: SettingsRoute.page),
           ],
         ),
         AutoRoute(page: SignInRoute.page),
