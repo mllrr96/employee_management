@@ -14,10 +14,10 @@ class AppRouter extends RootStackRouter {
             // AutoRoute(page: SettingsRoute.page),
           ],
         ),
-        AutoRoute(page: WelcomeRoute.page),
         AutoRoute(page: SignInRoute.page),
         AutoRoute(page: AddCheckRoute.page),
-        // AutoRoute(page: SelectCoursesRoute.page),
+        AutoRoute(page: UpdateProfileRoute.page),
+        AutoRoute(page: ChangePasswordRoute.page),
         // AutoRoute(page: SelectInstructorsRoute.page),
       ];
 

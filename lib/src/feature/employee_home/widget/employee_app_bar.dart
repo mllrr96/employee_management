@@ -1,12 +1,33 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
-class EmployeeAppBar extends StatelessWidget implements PreferredSizeWidget {
+class EmployeeAppBar extends StatefulWidget implements PreferredSizeWidget {
   @override
-  Widget build(BuildContext context) {
-    final String todayDate = DateFormat('d, MMMM y').format( DateTime.now());
-    return Container(
+  State<EmployeeAppBar> createState() => _EmployeeAppBarState();
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+}
+
+class _EmployeeAppBarState extends State<EmployeeAppBar> {
+  final String todayDate = DateFormat('d, MMMM y').format(DateTime.now());
+  final String name = FirebaseAuth.instance.currentUser?.displayName ?? '';
+
+  String get timeOfDay {
+    final hour = DateTime.now().hour;
+    if (hour < 12) {
+      return 'Morning';
+    } else if (hour < 17) {
+      return 'Afternoon';
+    } else {
+      return 'Evening';
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) => Container(
         height: kToolbarHeight + MediaQuery.of(context).viewPadding.top,
         color: Colors.white,
         alignment: Alignment.bottomCenter,
@@ -22,7 +43,7 @@ class EmployeeAppBar extends StatelessWidget implements PreferredSizeWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Morning, Ahmed',
+                      '$timeOfDay, $name',
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 20,
@@ -40,14 +61,13 @@ class EmployeeAppBar extends StatelessWidget implements PreferredSizeWidget {
                     ),
                   ],
                 ),
-                const ShadAvatar( 'assets/images/avatar.png',size: Size(40, 40),),
+                const ShadAvatar(
+                  'assets/images/avatar.png',
+                  size: Size(40, 40),
+                ),
               ],
             ),
           ),
         ),
       );
-  }
-
-  @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
