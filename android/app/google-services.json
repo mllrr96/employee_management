@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "37030004359",
+    "project_id": "employee-management-syst-a44b7",
+    "storage_bucket": "employee-management-syst-a44b7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:37030004359:android:e04b7dc3f12d9139bd1a22",
+        "android_client_info": {
+          "package_name": "com.rag.employee_management"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDq6wNcQ4xBpIOmrOjptmS0vBRgq4fFOvw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:37030004359:android:63585ab8f41080e5bd1a22",
+        "android_client_info": {
+          "package_name": "rag.emp.com.employee_management"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDq6wNcQ4xBpIOmrOjptmS0vBRgq4fFOvw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
