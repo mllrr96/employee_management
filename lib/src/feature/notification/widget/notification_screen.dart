@@ -1,4 +1,5 @@
 import 'package:auto_route/annotations.dart';
+import 'package:employee_management/src/core/utils/extensions/context_extension.dart';
 import 'package:employee_management/src/feature/notification/model/notification.dart';
 import 'package:flutter/material.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
@@ -59,8 +60,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                             onPressed: () => Navigator.of(context).pop(),
                           ),
                           SizedBox(
-                            height:
-                                MediaQuery.of(context).viewPadding.bottom - 16,
+                            height: context.bottomPadding - 16,
                           ),
                         ],
                       ),

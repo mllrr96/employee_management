@@ -1,6 +1,7 @@
 import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:employee_management/src/core/routes/app_route.gr.dart';
+import 'package:employee_management/src/core/utils/extensions/string_extension.dart';
 import 'package:employee_management/src/core/utils/loading.dart';
 import 'package:employee_management/src/feature/settings/bloc/theme_cubit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -94,8 +95,4 @@ class SettingsScreen extends StatelessWidget {
           ),
         ),
       );
-}
-
-extension on String {
-  String get capitalize => this[0].toUpperCase() + substring(1);
 }

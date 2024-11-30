@@ -39,4 +39,9 @@ extension ContextExtension on BuildContext {
             'a $T of the exact type',
         'out_of_scope',
       ));
+
+  double get bottomPadding => MediaQuery.of(this).viewPadding.bottom;
+  double get height => MediaQuery.of(this).size.height;
+  double get width => MediaQuery.of(this).size.width;
+  bool get isDarkMode => Theme.of(this).brightness == Brightness.dark;
 }

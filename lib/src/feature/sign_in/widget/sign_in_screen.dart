@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:employee_management/src/core/routes/app_route.gr.dart';
+import 'package:employee_management/src/core/utils/extensions/context_extension.dart';
 import 'package:employee_management/src/core/utils/loading.dart';
 import 'package:employee_management/src/core/widget/employee_icons_icons.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -73,145 +74,155 @@ class _SignInScreenState extends State<SignInScreen> {
   }
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(),
-        body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Expanded(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: Column(
-                          children: [
-                            Expanded(
-                              flex: 4,
-                              child: SignInInfoCard(
-                                color: Color(0xffFEF2E8),
-                                icon: Icon(
-                                  EmployeeIcons.profile_bold,
-                                  color: Color(0xffD38409),
+  Widget build(BuildContext context) => GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: Scaffold(
+          body: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const SizedBox(height: kToolbarHeight),
+                    SizedBox(
+                      height: context.height * 0.4,
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Column(
+                              children: [
+                                Expanded(
+                                  flex: 4,
+                                  child: SignInInfoCard(
+                                    color: Color(0xffFEF2E8),
+                                    icon: Icon(
+                                      EmployeeIcons.profile_bold,
+                                      size: 18,
+                                      color: Color(0xffD38409),
+                                    ),
+                                    text: 'Increase Your Workflow',
+                                  ),
                                 ),
-                                text: 'Increase Your Workflow',
-                              ),
-                            ),
-                            SizedBox(height: 10),
-                            Expanded(
-                              flex: 3,
-                              child: SignInInfoCard(
-                                height: 100,
-                                color: Color(0xffF2F0FE),
-                                icon: Icon(
-                                  EmployeeIcons.stocks,
-                                  color: Color(0xffA191F7),
+                                SizedBox(height: 10),
+                                Expanded(
+                                  flex: 3,
+                                  child: SignInInfoCard(
+                                    height: 100,
+                                    color: Color(0xffF2F0FE),
+                                    icon: Icon(
+                                      EmployeeIcons.stocks,
+                                      color: Color(0xffA191F7),
+                                    ),
+                                    text: 'Attendance Management',
+                                  ),
                                 ),
-                                text: 'Attendance Management',
-                              ),
+                              ],
                             ),
-                          ],
-                        ),
+                          ),
+                          SizedBox(width: 18),
+                          Expanded(
+                            child: Column(
+                              children: [
+                                Expanded(
+                                  flex: 3,
+                                  child: SignInInfoCard(
+                                    height: 100,
+                                    color: Color(0xffF1F8EC),
+                                    icon: Icon(
+                                      EmployeeIcons.money_check_alt,
+                                      size: 18,
+                                      color: Color(0xff72AB3A),
+                                    ),
+                                    text: 'Automatically Generate Payroll',
+                                  ),
+                                ),
+                                SizedBox(height: 10),
+                                Expanded(
+                                  flex: 4,
+                                  child: SignInInfoCard(
+                                    height: 100,
+                                    color: Color(0xffEAEEF6),
+                                    icon: Icon(
+                                      EmployeeIcons.electricity_outline,
+                                      color: Color(0xff5C6476),
+                                    ),
+                                    text: 'Enhanced Data Accuracy',
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
-                      SizedBox(width: 18),
-                      Expanded(
-                        child: Column(
-                          children: [
-                            Expanded(
-                              flex: 3,
-                              child: SignInInfoCard(
-                                height: 100,
-                                color: Color(0xffF1F8EC),
-                                icon: Icon(
-                                  EmployeeIcons.money_check_alt,
-                                  color: Color(0xff72AB3A),
-                                ),
-                                text: 'Automatically Generate Payroll',
-                              ),
-                            ),
-                            SizedBox(height: 10),
-                            Expanded(
-                              flex: 4,
-                              child: SignInInfoCard(
-                                height: 100,
-                                color: Color(0xffEAEEF6),
-                                icon: Icon(
-                                  EmployeeIcons.electricity_outline,
-                                  color: Color(0xff5C6476),
-                                ),
-                                text: 'Enhanced Data Accuracy',
-                              ),
-                            ),
-                          ],
+                    ),
+                    const SizedBox(height: 15),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        const SizedBox(height: 20),
+                        const Text(
+                          'Employee Management System',
+                          style: TextStyle(
+                            fontSize: 26,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                      ),
-                    ],
-                  ),
+                        const SizedBox(height: 20),
+                        Form(
+                          key: formKey,
+                          child: Column(
+                            children: [
+                              ShadInputFormField(
+                                controller: emailController,
+                                textInputAction: TextInputAction.next,
+                                placeholder: const Text('Email'),
+                                keyboardType: TextInputType.emailAddress,
+                                validator: (value) {
+                                  if (value.isEmpty) {
+                                    return 'Email is required';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              const SizedBox(height: 10),
+                              ShadInputFormField(
+                                controller: passwordController,
+                                placeholder: const Text('Password'),
+                                obscureText: true,
+                                keyboardType: TextInputType.visiblePassword,
+                                validator: (value) {
+                                  if (value.isEmpty) {
+                                    return 'Password is required';
+                                  }
+                                  if (value.length < 8) {
+                                    return 'Password must be at least 8 characters';
+                                  }
+                                  return null;
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-                const SizedBox(height: 15),
-                Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      const Text(
-                        'Employee Management System',
-                        style: TextStyle(
-                          fontSize: 26,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                      Form(
-                        key: formKey,
-                        child: Column(
-                          children: [
-                            ShadInputFormField(
-                              controller: emailController,
-                              textInputAction: TextInputAction.next,
-                              placeholder: const Text('Email'),
-                              keyboardType: TextInputType.emailAddress,
-                              validator: (value) {
-                                if (value.isEmpty) {
-                                  return 'Email is required';
-                                }
-                                return null;
-                              },
-                            ),
-                            const SizedBox(height: 10),
-                            ShadInputFormField(
-                              controller: passwordController,
-                              placeholder: const Text('Password'),
-                              obscureText: true,
-                              keyboardType: TextInputType.visiblePassword,
-                              validator: (value) {
-                                if (value.isEmpty) {
-                                  return 'Password is required';
-                                }
-                                if (value.length < 8) {
-                                  return 'Password must be at least 8 characters';
-                                }
-                                return null;
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      ShadButton(
-                        size: ShadButtonSize.lg,
-                        width: double.infinity,
-                        onLongPress: () {
-                          context.router.replaceAll([const HomeRoute()]);
-                        },
-                        onPressed: () async => await signIn(),
-                        child: const Text('Sign In'),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+              ),
+            ),
+          ),
+          bottomNavigationBar: Padding(
+            padding: EdgeInsets.fromLTRB(24, 0, 24, context.bottomPadding),
+            child: ShadButton(
+              size: ShadButtonSize.lg,
+              width: double.infinity,
+              onLongPress: () {
+                context.router.replaceAll([const HomeRoute()]);
+              },
+              onPressed: () async => await signIn(),
+              child: const Text('Sign In'),
             ),
           ),
         ),
@@ -262,9 +273,9 @@ class SignInInfoCard extends StatelessWidget {
                 child: Text(
                   text,
                   style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black,),
                   textAlign: TextAlign.center,
                 ),
               ),

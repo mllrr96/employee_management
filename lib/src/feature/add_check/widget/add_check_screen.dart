@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:auto_route/auto_route.dart';
 import 'package:employee_management/src/core/constant/generated/assets.gen.dart';
 import 'package:employee_management/src/core/routes/app_route.gr.dart';
+import 'package:employee_management/src/core/utils/extensions/context_extension.dart';
 import 'package:employee_management/src/core/utils/loading.dart';
 import 'package:employee_management/src/feature/employee_home/bloc/check_bloc.dart';
 import 'package:employee_management/src/feature/employee_home/model/check.dart';
@@ -250,7 +251,7 @@ class CheckTypeWidget extends StatelessWidget {
                         child: const Text('Cancel'),
                       ),
                       SizedBox(
-                        height: MediaQuery.of(context).viewPadding.bottom,
+                        height: context.bottomPadding,
                       ),
                     ],
                   ),

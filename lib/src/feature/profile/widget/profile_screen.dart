@@ -6,14 +6,20 @@ import 'package:flutter/material.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
 @RoutePage()
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final name = FirebaseAuth.instance.currentUser?.displayName;
-    final email = FirebaseAuth.instance.currentUser?.email;
-    return Scaffold(
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  String? get name => FirebaseAuth.instance.currentUser?.displayName;
+
+  String? get email => FirebaseAuth.instance.currentUser?.email;
+
+  @override
+  Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
           title: const Text(
             'Profile',
@@ -34,28 +40,34 @@ class ProfileScreen extends StatelessWidget {
                     size: const Size(120, 120),
                   ),
                   const SizedBox(width: 16),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      if (name != null)
-                        Text(
-                          name,
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
+                  Flexible(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        if (name != null)
+                          Text(
+                            name!,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                      if (email != null)
-                        Text(
-                          email,
-                          style: const TextStyle(
-                            color: Colors.grey,
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
+                        if (email != null)
+                          Column(
+                            children: [
+                              const SizedBox(height: 4),
+                              Text(
+                                email!,
+                                style: const TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
-                    ],
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -68,8 +80,12 @@ class ProfileScreen extends StatelessWidget {
                   ShadButton.outline(
                     size: ShadButtonSize.lg,
                     width: double.infinity,
-                    onPressed: () =>
-                        context.pushRoute(const UpdateProfileRoute()),
+                    onPressed: () async {
+                      final result = await context.pushRoute(const UpdateProfileRoute());
+                      if (result != null) {
+                        setState(() {});
+                      }
+                    },
                     child: const Text('Update Profile'),
                   ),
                   ShadButton.outline(
@@ -83,6 +99,6 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
           ],
-        ),);
-  }
+        ),
+      );
 }

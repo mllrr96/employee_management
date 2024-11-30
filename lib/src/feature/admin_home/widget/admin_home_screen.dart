@@ -81,6 +81,7 @@ class AdminActionWidget extends StatelessWidget {
           decoration: BoxDecoration(
             color: color.withOpacity(0.1),
             borderRadius: BorderRadius.circular(15),
+            border: Border.all(color: color.withOpacity(0.2)),
           ),
           padding: const EdgeInsets.all(10),
           child: Column(
