@@ -19,9 +19,9 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   final newPasswordCtrl = TextEditingController();
   final reEnterNewPasswordCtrl = TextEditingController();
   final formKey = GlobalKey<FormState>();
-  bool showOldPassword = false;
-  bool showNewPassword = false;
-  bool showReEnterNewPassword = false;
+  bool showOldPassword = true;
+  bool showNewPassword = true;
+  bool showReEnterNewPassword = true;
 
   @override
   Widget build(BuildContext context) => GestureDetector(

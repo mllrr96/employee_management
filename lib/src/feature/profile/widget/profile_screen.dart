@@ -17,13 +17,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
   String? get name => FirebaseAuth.instance.currentUser?.displayName;
 
   String? get email => FirebaseAuth.instance.currentUser?.email;
+  bool isAdministrator =
+      FirebaseAuth.instance.currentUser!.email!.contains('auis.edu.krd');
 
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: const Text(
-            'Profile',
-            style: TextStyle(
+          title: Text(
+            isAdministrator ? 'Admin Profile' : 'Profile',
+            style: const TextStyle(
               fontSize: 16,
               fontFamily: 'Roboto',
             ),
@@ -40,35 +42,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     size: const Size(120, 120),
                   ),
                   const SizedBox(width: 16),
-                  Flexible(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        if (name != null)
-                          Text(
-                            name!,
-                            style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        if (email != null)
-                          Column(
-                            children: [
-                              const SizedBox(height: 4),
-                              Text(
-                                email!,
-                                style: const TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
-                          ),
-                      ],
-                    ),
-                  ),
+                  _Info(name, email),
                 ],
               ),
             ),
@@ -81,7 +55,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     size: ShadButtonSize.lg,
                     width: double.infinity,
                     onPressed: () async {
-                      final result = await context.pushRoute(const UpdateProfileRoute());
+                      final result =
+                          await context.pushRoute(const UpdateProfileRoute());
                       if (result != null) {
                         setState(() {});
                       }
@@ -101,4 +76,63 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ],
         ),
       );
+}
+
+class _Info extends StatefulWidget {
+  const _Info(this.name, this.email);
+
+  final String? name;
+  final String? email;
+
+  @override
+  State<_Info> createState() => _InfoState();
+}
+
+class _InfoState extends State<_Info> {
+  String? get name => widget.name;
+
+  String? get email => widget.email;
+
+  @override
+  Widget build(BuildContext context) {
+    if (name != null && name!.isNotEmpty && email != null) {
+      return Flexible(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              name!,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              email!,
+              style: const TextStyle(
+                color: Colors.grey,
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
+    if (email != null) {
+      return Flexible(
+        child: Text(
+          email!,
+          style: const TextStyle(
+            color: Colors.grey,
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      );
+    }
+    return const SizedBox.shrink();
+  }
 }

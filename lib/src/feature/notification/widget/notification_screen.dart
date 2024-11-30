@@ -37,8 +37,12 @@ class _NotificationScreenState extends State<NotificationScreen> {
             onTap: () async {
               await showModalBottomSheet<NotificationModel>(
                 context: context,
-                builder: (context) => Container(
-                  margin: const EdgeInsets.all(16),
+                constraints: BoxConstraints(
+                  maxHeight: context.height * 0.5,
+                ),
+                builder: (context) => Padding(
+                  padding:
+                      EdgeInsets.fromLTRB(24, 24, 24, context.bottomPadding),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -60,7 +64,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                             onPressed: () => Navigator.of(context).pop(),
                           ),
                           SizedBox(
-                            height: context.bottomPadding - 16,
+                            height: context.bottomPadding,
                           ),
                         ],
                       ),

@@ -26,17 +26,29 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
           surfaceTintColor: Colors.transparent,
         ),
         body: ListView(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
           children: [
-            ShadDatePicker(
-              width: double.infinity,
-              selected: selectedDate,
-              closeOnSelection: true,
-              onChanged: (date) {
-                if (date == null) return;
-                setState(() => selectedDate = date);
-              },
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: ShadDatePicker(
+                width: double.infinity,
+                selected: selectedDate,
+                closeOnSelection: true,
+                onChanged: (date) {
+                  if (date == null) return;
+                  setState(() => selectedDate = date);
+                },
+              ),
             ),
+            const Divider(),
+            const ListTile(
+              leading: Icon(Icons.alarm),
+              title: Text('Work starts at 9:00 AM'),
+            ),
+            const ListTile(
+              leading: Icon(Icons.alarm_off),
+              title: Text('Work ends at 6:00 PM'),
+            ),
+
           ],
         ),
       );

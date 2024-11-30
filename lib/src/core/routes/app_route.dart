@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-
 import 'package:employee_management/src/core/routes/app_route.gr.dart';
 
 @AutoRouterConfig(replaceInRouteName: 'Screen|Page,Route')

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:employee_management/src/core/routes/app_route.gr.dart';
 import 'package:employee_management/src/core/utils/extensions/context_extension.dart';
 import 'package:employee_management/src/core/widget/employee_icons_icons.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
@@ -13,16 +14,19 @@ class DashboardScreen extends StatelessWidget {
         value: SystemUiOverlayStyle(
           systemNavigationBarColor:
               context.isDarkMode ? Colors.black : Colors.white,
+          statusBarColor: context.isDarkMode ? Colors.black : Colors.white,
         ),
         child: AutoTabsScaffold(
           homeIndex: 0,
-          routes: const [
-            AdminHomeRoute(),
-            // HomeRoute(),
-            ProfileRoute(),
-            NotificationRoute(),
-            ScheduleRoute(),
-            SettingsRoute(),
+          routes: [
+            if (FirebaseAuth.instance.currentUser!.email!.contains('auis.edu.krd'))
+            const AdminHomeRoute(),
+            if (!FirebaseAuth.instance.currentUser!.email!.contains('auis.edu.krd'))
+            const HomeRoute(),
+            const ProfileRoute(),
+            const NotificationRoute(),
+            const ScheduleRoute(),
+            const SettingsRoute(),
           ],
           bottomNavigationBuilder: (_, tabsRouter) => Theme(
             data: Theme.of(context).copyWith(
