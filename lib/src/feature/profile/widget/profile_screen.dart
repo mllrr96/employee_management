@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:employee_management/src/core/constant/generated/assets.gen.dart';
 import 'package:employee_management/src/core/routes/app_route.gr.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -28,9 +29,9 @@ class ProfileScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
               child: Row(
                 children: [
-                  const ShadAvatar(
-                    'assets/images/avatar.png',
-                    size: Size(120, 120),
+                  ShadAvatar(
+                    Assets.images.avatar.path,
+                    size: const Size(120, 120),
                   ),
                   const SizedBox(width: 16),
                   Column(

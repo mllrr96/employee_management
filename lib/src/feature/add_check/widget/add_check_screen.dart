@@ -221,7 +221,7 @@ class CheckTypeWidget extends StatelessWidget {
           child: InkWell(
             borderRadius: BorderRadius.circular(15),
             onTap: () {
-              showModalBottomSheet(
+              showModalBottomSheet<String?>(
                 isDismissible: false,
                 context: context,
                 builder: (context) => Container(

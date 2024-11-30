@@ -7,15 +7,12 @@ import 'package:employee_management/src/core/utils/logger.dart';
 import 'package:employee_management/src/feature/employee_home/bloc/check_bloc.dart';
 import 'package:employee_management/src/feature/initialization/widget/app.dart';
 import 'package:employee_management/src/feature/initialization/widget/initialization_failed_app.dart';
+import 'package:employee_management/src/feature/settings/bloc/theme_cubit.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-/// {@template app_runner}
-/// A class which is responsible for initialization and running the app.
-/// {@endtemplate}
 final class AppRunner {
-  /// {@macro app_runner}
   const AppRunner(this.logger);
 
   /// The logger instance
@@ -28,11 +25,6 @@ final class AppRunner {
     // Preserve splash screen
     binding.deferFirstFrame();
 
-    // Initialize Firebase
-    await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    );
-
     // Override logging
     FlutterError.onError = logger.logFlutterError;
     WidgetsBinding.instance.platformDispatcher.onError =
@@ -44,13 +36,24 @@ final class AppRunner {
 
     Future<void> initializeAndRun() async {
       try {
+
+        // Configure dependency injection
         await configureInjection();
+
+        // Initialize Firebase
+        await Firebase.initializeApp(
+          options: DefaultFirebaseOptions.currentPlatform,
+        );
+
         // Attach this widget to the root of the tree.
         runApp(
           MultiBlocProvider(
             providers: [
               BlocProvider<CheckBloc>(
                 create: (context) => CheckBloc.instance,
+              ),
+              BlocProvider<ThemeCubit>(
+                create: (context) => ThemeCubit.instance..loadTheme(),
               ),
             ],
             child: const App(),

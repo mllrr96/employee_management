@@ -17,7 +17,7 @@ class _GenerateReportsScreenState extends State<GenerateReportsScreen> {
     'Mohammed Ali',
     'Adam Abdulraheman',
     'Lyan Majdi',
-    'Mohammad Sajad'
+    'Mohammad Sajad',
   ];
   bool _isAllEmployees = false;
 
@@ -82,7 +82,7 @@ class _GenerateReportsScreenState extends State<GenerateReportsScreen> {
                 ],
                 selectedOptionsBuilder: (BuildContext context, values) =>
                     Text(values.map((v) => v.capitalize()).join(', ')),
-              )
+              ),
           ],
         ),
       ),

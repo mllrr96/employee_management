@@ -1,3 +1,4 @@
+import 'package:employee_management/src/core/constant/generated/assets.gen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -62,9 +63,9 @@ class _EmployeeAppBarState extends State<EmployeeAppBar> {
                     ),
                   ],
                 ),
-                const ShadAvatar(
-                  'assets/images/avatar.png',
-                  size: Size(40, 40),
+                ShadAvatar(
+                  Assets.images.avatar.path,
+                  size: const Size(40, 40),
                 ),
               ],
             ),

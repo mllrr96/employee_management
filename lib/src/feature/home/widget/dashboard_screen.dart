@@ -16,29 +16,32 @@ class DashboardScreen extends StatelessWidget {
           SettingsRoute(),
         ],
         bottomNavigationBuilder: (_, tabsRouter) => BottomNavigationBar(
+          selectedLabelStyle: const TextStyle(fontSize: 1),
+          unselectedLabelStyle: const TextStyle(fontSize: 1),
+          type: BottomNavigationBarType.fixed,
           currentIndex: tabsRouter.activeIndex,
           selectedItemColor: Colors.blue,
           unselectedItemColor: Colors.grey,
           onTap: tabsRouter.setActiveIndex,
           items: const [
             BottomNavigationBarItem(
-              label: 'Home',
+              label: '',
               icon: Icon(CupertinoIcons.home),
             ),
             BottomNavigationBarItem(
-              label: 'Profile',
+              label: '',
               icon: Icon(Icons.account_circle),
             ),
             BottomNavigationBarItem(
-              label: 'Notification',
+              label: '',
               icon: Icon(Icons.notifications_active),
             ),
             BottomNavigationBarItem(
-              label: 'Schedule',
+              label: '',
               icon: Icon(Icons.date_range),
             ),
             BottomNavigationBarItem(
-              label: 'Settings',
+              label: '',
               icon: Icon(CupertinoIcons.settings),
             ),
           ],

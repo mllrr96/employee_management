@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:employee_management/src/core/constant/generated/assets.gen.dart';
+import 'package:employee_management/src/core/utils/loading.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
@@ -113,7 +114,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
           child: ShadButton(
             onPressed: () async {
               if (!formKey.currentState!.validate()) return;
-
+              await loading();
               // Update profile
               if (nameCtrl.text != name) {
                 await FirebaseAuth.instance.currentUser
@@ -123,6 +124,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                 await FirebaseAuth.instance.currentUser
                     ?.verifyBeforeUpdateEmail(emailCtrl.text);
               }
+              await dismissLoading();
               if (context.mounted) {
                 await context.maybePop();
               }

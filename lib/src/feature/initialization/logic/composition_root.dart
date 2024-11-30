@@ -4,24 +4,9 @@ import 'package:employee_management/src/core/utils/error_tracking_manager/error_
 import 'package:employee_management/src/core/utils/error_tracking_manager/sentry_tracking_manager.dart';
 import 'package:employee_management/src/core/utils/logger.dart';
 import 'package:employee_management/src/feature/initialization/model/dependencies_container.dart';
-import 'package:employee_management/src/feature/settings/bloc/app_settings_bloc.dart';
-import 'package:employee_management/src/feature/settings/data/app_settings_datasource.dart';
-import 'package:employee_management/src/feature/settings/data/app_settings_repository.dart';
 import 'package:flutter/foundation.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-/// {@template composition_root}
-/// A place where all dependencies are initialized.
-/// {@endtemplate}
-///
-/// {@template composition_process}
-/// Composition of dependencies is a process of creating and configuring
-/// instances of classes that are required for the application to work.
-///
-/// It is a good practice to keep all dependencies in one place to make it
-/// easier to manage them and to ensure that they are initialized only once.
-/// {@endtemplate}
 final class CompositionRoot {
   /// {@macro composition_root}
   const CompositionRoot(this.config, this.logger);
@@ -84,17 +69,13 @@ abstract class Factory<T> {
   T create();
 }
 
-/// {@template async_factory}
 /// Factory that creates an instance of [T] asynchronously.
-/// {@endtemplate}
 abstract class AsyncFactory<T> {
   /// Creates an instance of [T].
   Future<T> create();
 }
 
-/// {@template dependencies_factory}
 /// Factory that creates an instance of [DependenciesContainer].
-/// {@endtemplate}
 class DependenciesFactory extends AsyncFactory<DependenciesContainer> {
   /// {@macro dependencies_factory}
   DependenciesFactory(this.config, this.logger);
@@ -107,27 +88,21 @@ class DependenciesFactory extends AsyncFactory<DependenciesContainer> {
 
   @override
   Future<DependenciesContainer> create() async {
-    final sharedPreferences = SharedPreferencesAsync();
 
     final packageInfo = await PackageInfo.fromPlatform();
     final errorTrackingManager = await ErrorTrackingManagerFactory(config, logger).create();
-    final settingsBloc = await SettingsBlocFactory(sharedPreferences).create();
 
     return DependenciesContainer(
       logger: logger,
       config: config,
-      appSettingsBloc: settingsBloc,
       errorTrackingManager: errorTrackingManager,
       packageInfo: packageInfo,
     );
   }
 }
 
-/// {@template error_tracking_manager_factory}
 /// Factory that creates an instance of [ErrorTrackingManager].
-/// {@endtemplate}
 class ErrorTrackingManagerFactory extends AsyncFactory<ErrorTrackingManager> {
-  /// {@macro error_tracking_manager_factory}
   ErrorTrackingManagerFactory(this.config, this.logger);
 
   /// Application configuration
@@ -149,31 +124,5 @@ class ErrorTrackingManagerFactory extends AsyncFactory<ErrorTrackingManager> {
     }
 
     return errorTrackingManager;
-  }
-}
-
-/// {@template settings_bloc_factory}
-/// Factory that creates an instance of [AppSettingsBloc].
-/// {@endtemplate}
-class SettingsBlocFactory extends AsyncFactory<AppSettingsBloc> {
-  /// {@macro settings_bloc_factory}
-  SettingsBlocFactory(this.sharedPreferences);
-
-  /// Shared preferences instance
-  final SharedPreferencesAsync sharedPreferences;
-
-  @override
-  Future<AppSettingsBloc> create() async {
-    final appSettingsRepository = AppSettingsRepositoryImpl(
-      datasource: AppSettingsDatasourceImpl(sharedPreferences: sharedPreferences),
-    );
-
-    final appSettings = await appSettingsRepository.getAppSettings();
-    final initialState = AppSettingsState.idle(appSettings: appSettings);
-
-    return AppSettingsBloc(
-      appSettingsRepository: appSettingsRepository,
-      initialState: initialState,
-    );
   }
 }
