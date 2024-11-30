@@ -1,3 +1,4 @@
+import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:employee_management/src/core/routes/app_route.gr.dart';
 import 'package:employee_management/src/core/utils/loading.dart';
@@ -60,6 +61,14 @@ class SettingsScreen extends StatelessWidget {
                 size: ShadButtonSize.lg,
                 width: double.infinity,
                 onPressed: () async {
+                  final confirmDelete = await showOkCancelAlertDialog(
+                    context: context,
+                    title: 'Sign Out',
+                    message: 'Are you sure you want to sign out?',
+                    okLabel: 'Sign Out',
+                    isDestructiveAction: true,
+                  );
+                  if (confirmDelete != OkCancelResult.ok) return;
                   await loading();
                   try {
                     await FirebaseAuth.instance.signOut();

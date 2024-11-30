@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:employee_management/src/core/routes/app_route.gr.dart';
+import 'package:employee_management/src/core/utils/loading.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
@@ -26,7 +27,7 @@ class _SignInScreenState extends State<SignInScreen> {
     if (!formKey.currentState!.validate()) {
       return;
     }
-
+    await loading();
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: emailController.text,
@@ -67,6 +68,8 @@ class _SignInScreenState extends State<SignInScreen> {
           ),
         ),
       );
+    } finally {
+      await dismissLoading();
     }
   }
 
