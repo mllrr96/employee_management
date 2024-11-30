@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:employee_management/src/core/routes/app_route.gr.dart';
 import 'package:employee_management/src/core/utils/loading.dart';
+import 'package:employee_management/src/core/widget/employee_icons_icons.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
@@ -24,9 +25,7 @@ class _SignInScreenState extends State<SignInScreen> {
   }
 
   Future<void> signIn() async {
-    if (!formKey.currentState!.validate()) {
-      return;
-    }
+    if (!formKey.currentState!.validate()) return;
     await loading();
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
@@ -94,7 +93,7 @@ class _SignInScreenState extends State<SignInScreen> {
                               child: SignInInfoCard(
                                 color: Color(0xffFEF2E8),
                                 icon: Icon(
-                                  Icons.person,
+                                  EmployeeIcons.profile_bold,
                                   color: Color(0xffD38409),
                                 ),
                                 text: 'Increase Your Workflow',
@@ -107,7 +106,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                 height: 100,
                                 color: Color(0xffF2F0FE),
                                 icon: Icon(
-                                  Icons.check,
+                                  EmployeeIcons.stocks,
                                   color: Color(0xffA191F7),
                                 ),
                                 text: 'Attendance Management',
@@ -126,7 +125,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                 height: 100,
                                 color: Color(0xffF1F8EC),
                                 icon: Icon(
-                                  Icons.money,
+                                  EmployeeIcons.money_check_alt,
                                   color: Color(0xff72AB3A),
                                 ),
                                 text: 'Automatically Generate Payroll',
@@ -139,7 +138,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                 height: 100,
                                 color: Color(0xffEAEEF6),
                                 icon: Icon(
-                                  Icons.electrical_services_outlined,
+                                  EmployeeIcons.electricity_outline,
                                   color: Color(0xff5C6476),
                                 ),
                                 text: 'Enhanced Data Accuracy',

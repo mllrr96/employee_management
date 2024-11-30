@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:employee_management/src/core/widget/employee_icons_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
@@ -22,7 +23,7 @@ class ReportsPreviewScreen extends StatelessWidget {
       body: Column(
         children: [
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
             margin: const EdgeInsets.symmetric(horizontal: 24),
             decoration: BoxDecoration(
               color: Colors.white,
@@ -31,7 +32,7 @@ class ReportsPreviewScreen extends StatelessWidget {
             ),
             child: const Row(
               children: [
-                Icon(Icons.print),
+                Icon(EmployeeIcons.excel),
                 SizedBox(width: 12),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

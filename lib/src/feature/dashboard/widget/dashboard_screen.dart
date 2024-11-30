@@ -1,7 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:employee_management/src/core/routes/app_route.gr.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:employee_management/src/core/widget/employee_icons_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:shadcn_ui/shadcn_ui.dart';
 
 @RoutePage()
 class DashboardScreen extends StatelessWidget {
@@ -16,33 +17,33 @@ class DashboardScreen extends StatelessWidget {
           SettingsRoute(),
         ],
         bottomNavigationBuilder: (_, tabsRouter) => BottomNavigationBar(
-          selectedLabelStyle: const TextStyle(fontSize: 1),
-          unselectedLabelStyle: const TextStyle(fontSize: 1),
+          selectedLabelStyle: const TextStyle(fontSize: 0),
+          unselectedLabelStyle: const TextStyle(fontSize: 0),
           type: BottomNavigationBarType.fixed,
           currentIndex: tabsRouter.activeIndex,
-          selectedItemColor: Colors.blue,
-          unselectedItemColor: Colors.grey,
+          selectedItemColor: ShadTheme.of(context).primaryButtonTheme.backgroundColor,
+          // unselectedItemColor: Colors.grey,
           onTap: tabsRouter.setActiveIndex,
           items: const [
             BottomNavigationBarItem(
               label: '',
-              icon: Icon(CupertinoIcons.home),
+              icon: Icon(EmployeeIcons.home),
             ),
             BottomNavigationBarItem(
               label: '',
-              icon: Icon(Icons.account_circle),
+              icon: Icon(EmployeeIcons.profile),
             ),
             BottomNavigationBarItem(
               label: '',
-              icon: Icon(Icons.notifications_active),
+              icon: Icon(EmployeeIcons.notification),
             ),
             BottomNavigationBarItem(
               label: '',
-              icon: Icon(Icons.date_range),
+              icon: Icon(EmployeeIcons.schedule),
             ),
             BottomNavigationBarItem(
               label: '',
-              icon: Icon(CupertinoIcons.settings),
+              icon: Icon(EmployeeIcons.settings),
             ),
           ],
         ),

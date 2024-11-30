@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:employee_management/src/core/routes/app_route.gr.dart';
+import 'package:employee_management/src/core/widget/employee_icons_icons.dart';
 import 'package:flutter/material.dart';
 
 @RoutePage()
@@ -29,25 +30,25 @@ class AdminHomeScreen extends StatelessWidget {
           children: [
             AdminActionWidget(
               title: 'Generate Payroll Reports',
-              icon: Icons.payments,
+              icon: EmployeeIcons.report,
               color: const Color(0xff61598B),
               onTap: () => context.router.push(const GenerateReportsRoute()),
             ),
             AdminActionWidget(
               title: 'Manage Schedule',
-              icon: Icons.calendar_month,
+              icon: EmployeeIcons.calendar,
               color: const Color(0xffFF3726),
               onTap: () {},
             ),
             AdminActionWidget(
               title: 'Manage Employees',
-              icon: Icons.group,
+              icon: EmployeeIcons.employee_group,
               color: const Color(0xff479696),
               onTap: () {},
             ),
             AdminActionWidget(
               title: 'Manage Admins',
-              icon: Icons.shield_outlined,
+              icon: EmployeeIcons.admin,
               color: const Color(0xffFF5648),
               onTap: () {},
             ),

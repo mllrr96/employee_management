@@ -106,6 +106,10 @@ flutter:
     # Add assets from the images directory to the application.
     - assets/images/
     - assets/lottie/
+  fonts:
+    - family: EmployeeIcons
+      fonts:
+        - asset: assets/fonts/EmployeeIcons.ttf
 
 
 flutter_gen:
