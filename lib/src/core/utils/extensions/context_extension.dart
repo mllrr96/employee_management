@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:shadcn_ui/shadcn_ui.dart';
 
 /// List of extensions for [BuildContext]
 extension ContextExtension on BuildContext {
@@ -8,8 +10,9 @@ extension ContextExtension on BuildContext {
   /// when that widget changes (or a new widget of that type is introduced,
   /// or the widget goes away), this build context is rebuilt so that it can
   /// obtain new values from that widget.
-  T? inhMaybeOf<T extends InheritedWidget>({bool listen = true}) =>
-      listen ? dependOnInheritedWidgetOfExactType<T>() : getInheritedWidgetOfExactType<T>();
+  T? inhMaybeOf<T extends InheritedWidget>({bool listen = true}) => listen
+      ? dependOnInheritedWidgetOfExactType<T>()
+      : getInheritedWidgetOfExactType<T>();
 
   /// Obtain the nearest widget of the given type T,
   /// which must be the type of a concrete [InheritedWidget] subclass,
@@ -41,7 +44,19 @@ extension ContextExtension on BuildContext {
       ));
 
   double get bottomPadding => MediaQuery.of(this).viewPadding.bottom;
+
   double get height => MediaQuery.of(this).size.height;
+
   double get width => MediaQuery.of(this).size.width;
+
   bool get isDarkMode => Theme.of(this).brightness == Brightness.dark;
+
+  SystemUiOverlayStyle get adaptiveUiOverlay => SystemUiOverlayStyle(
+        systemNavigationBarColor: isDarkMode
+            ? ShadTheme.of(this).cardTheme.backgroundColor
+            : Colors.white,
+        statusBarColor: isDarkMode
+            ? ShadTheme.of(this).cardTheme.backgroundColor
+            : Colors.white,
+      );
 }

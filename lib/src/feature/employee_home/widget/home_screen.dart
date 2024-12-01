@@ -74,7 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: gridDelegate,
                   itemCount: 2,
-                  itemBuilder: (context, index) => Skeletonizer(
+                  itemBuilder: (context, index) => const Skeletonizer(
                     child: CheckWidget(checkDetails: CheckDetails.empty()),
                   ),
                 ),

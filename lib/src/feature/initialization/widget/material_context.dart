@@ -26,7 +26,7 @@ class MaterialContext extends StatelessWidget {
               textTheme: ShadTextTheme.fromGoogleFont(GoogleFonts.inter),
             ),
             darkTheme: ShadThemeData(
-              colorScheme: const ShadVioletColorScheme.dark(),
+              colorScheme: const ShadRoseColorScheme.dark(),
               brightness: Brightness.dark,
               textTheme: ShadTextTheme.fromGoogleFont(GoogleFonts.inter),
             ),

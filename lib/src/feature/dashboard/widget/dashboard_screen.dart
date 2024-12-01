@@ -11,11 +11,7 @@ import 'package:shadcn_ui/shadcn_ui.dart';
 class DashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) => AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle(
-          systemNavigationBarColor:
-              context.isDarkMode ? Colors.black : Colors.white,
-          statusBarColor: context.isDarkMode ? Colors.black : Colors.white,
-        ),
+        value: context.adaptiveUiOverlay,
         child: AutoTabsScaffold(
           homeIndex: 0,
           routes: [

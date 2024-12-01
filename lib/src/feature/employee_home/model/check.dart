@@ -71,16 +71,16 @@ class Check {
   List<CheckDetails> get checkDetails {
     final List<CheckDetails> details = [];
     if (start != null) {
-      details.add(CheckDetails(type: CheckType.checkIn, time: start!));
+      details.add(CheckDetails(type: CheckType.checkIn, time: start));
     }
     if (end != null) {
-      details.add(CheckDetails(type: CheckType.checkOut, time: end!));
+      details.add(CheckDetails(type: CheckType.checkOut, time: end));
     }
     if (breakStart != null) {
-      details.add(CheckDetails(type: CheckType.breakStart, time: breakStart!));
+      details.add(CheckDetails(type: CheckType.breakStart, time: breakStart));
     }
     if (breakEnd != null) {
-      details.add(CheckDetails(type: CheckType.breakEnd, time: breakEnd!));
+      details.add(CheckDetails(type: CheckType.breakEnd, time: breakEnd));
     }
     return details;
   }
@@ -88,16 +88,16 @@ class Check {
 
 class CheckDetails {
   final CheckType type;
-  final DateTime time;
+  final DateTime? time;
 
-  CheckDetails({
+  const CheckDetails({
     required this.type,
     required this.time,
   });
 
-  CheckDetails.empty()
+  const CheckDetails.empty()
       : type = CheckType.unknown,
-        time = DateTime.now();
+        time = null;
 
   Color get color {
     switch (type) {

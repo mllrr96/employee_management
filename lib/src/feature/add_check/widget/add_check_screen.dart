@@ -26,6 +26,13 @@ class AddCheckScreen extends StatefulWidget {
 class _AddCheckScreenState extends State<AddCheckScreen> {
   Check get check => widget.check;
 
+  bool get canEndCheck =>
+      check.end == null &&
+      check.start != null &&
+      (check.breakStart == null ||
+          (check.breakStart != null && check.breakEnd != null));
+
+
   bool get newCheck => check.id == null;
 
   String time = DateFormat('h:mm:ss').format(DateTime.now());
@@ -103,8 +110,7 @@ class _AddCheckScreenState extends State<AddCheckScreen> {
             initial: (_) {},
             loaded: (_) {
               dismissLoading();
-              context
-                  .read<CheckBloc>().add(const CheckEvent.loadTodayCheck());
+              context.read<CheckBloc>().add(const CheckEvent.loadTodayCheck());
               context.router.popUntil(
                 (route) => route.settings.name == DashboardRoute.name,
               );
@@ -113,8 +119,7 @@ class _AddCheckScreenState extends State<AddCheckScreen> {
               loading();
             },
             empty: (_) {
-              context
-                  .read<CheckBloc>().add(const CheckEvent.loadTodayCheck());
+              context.read<CheckBloc>().add(const CheckEvent.loadTodayCheck());
               context.maybePop();
             },
             error: (e) {
@@ -152,7 +157,7 @@ class _AddCheckScreenState extends State<AddCheckScreen> {
                   const SizedBox(height: 20),
                   CheckTypeWidget(
                     title: 'Clock Out',
-                    enabled: check.end == null && check.start != null,
+                    enabled: canEndCheck,
                     onTap: () => addCheck(CheckType.checkOut),
                   ),
                   const SizedBox(height: 20),

@@ -31,7 +31,6 @@ class _EmployeeAppBarState extends State<EmployeeAppBar> {
   @override
   Widget build(BuildContext context) => Container(
         height: kToolbarHeight + MediaQuery.of(context).viewPadding.top,
-        color: Colors.white,
         alignment: Alignment.bottomCenter,
         child: SizedBox(
           height: kToolbarHeight,
@@ -47,7 +46,6 @@ class _EmployeeAppBarState extends State<EmployeeAppBar> {
                     Text(
                       name != null ? '$timeOfDay, $name' : 'Good $timeOfDay',
                       style: TextStyle(
-                        color: Colors.black,
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         fontFamily: GoogleFonts.roboto().fontFamily,
@@ -56,7 +54,6 @@ class _EmployeeAppBarState extends State<EmployeeAppBar> {
                     Text(
                       todayDate,
                       style: TextStyle(
-                        color: Colors.black,
                         fontSize: 14,
                         fontFamily: GoogleFonts.roboto().fontFamily,
                       ),
