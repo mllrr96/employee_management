@@ -1,16 +1,11 @@
 import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:employee_management/src/core/constant/generated/assets.gen.dart';
-import 'package:employee_management/src/core/routes/app_route.gr.dart';
 import 'package:employee_management/src/core/utils/extensions/context_extension.dart';
-import 'package:employee_management/src/core/utils/loading.dart';
+import 'package:employee_management/src/feature/add_check/widget/add_check_modal_sheet.dart';
 import 'package:employee_management/src/feature/employee_home/bloc/check_bloc.dart';
 import 'package:employee_management/src/feature/employee_home/model/check.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lottie/lottie.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
 @RoutePage()
@@ -31,7 +26,6 @@ class _AddCheckScreenState extends State<AddCheckScreen> {
       check.start != null &&
       (check.breakStart == null ||
           (check.breakStart != null && check.breakEnd != null));
-
 
   bool get newCheck => check.id == null;
 
@@ -58,149 +52,74 @@ class _AddCheckScreenState extends State<AddCheckScreen> {
     super.dispose();
   }
 
-  void addCheck(CheckType checkType) {
-    if (newCheck) {
-      checkBloc.add(
-        CheckEvent.createCheck(
-          check.copyWith(
-            employeeId: FirebaseAuth.instance.currentUser!.uid,
-            start: DateTime.now(),
-            date: DateTime.now(),
-          ),
-        ),
-      );
-    } else {
-      Check updatedCheck;
-      switch (checkType) {
-        case CheckType.checkIn:
-          updatedCheck = check.copyWith(
-            start: DateTime.now(),
-          );
-        case CheckType.checkOut:
-          updatedCheck = check.copyWith(
-            end: DateTime.now(),
-          );
-        case CheckType.breakStart:
-          updatedCheck = check.copyWith(
-            breakStart: DateTime.now(),
-          );
-        case CheckType.breakEnd:
-          updatedCheck = check.copyWith(
-            breakEnd: DateTime.now(),
-          );
-        default:
-          return;
-      }
-      checkBloc.add(
-        CheckEvent.updateCheck(
-          check.id!,
-          updatedCheck.copyWith(
-            employeeId: FirebaseAuth.instance.currentUser!.uid,
-          ),
-        ),
-      );
-    }
-  }
-
   @override
-  Widget build(BuildContext context) => BlocListener<CheckBloc, CheckState>(
-        bloc: checkBloc,
-        listener: (context, state) {
-          state.map(
-            initial: (_) {},
-            loaded: (_) {
-              dismissLoading();
-              context.read<CheckBloc>().add(const CheckEvent.loadTodayCheck());
-              context.router.popUntil(
-                (route) => route.settings.name == DashboardRoute.name,
-              );
-            },
-            loading: (_) {
-              loading();
-            },
-            empty: (_) {
-              context.read<CheckBloc>().add(const CheckEvent.loadTodayCheck());
-              context.maybePop();
-            },
-            error: (e) {
-              dismissLoading();
-              ShadToaster.of(context).show(
-                ShadToast.destructive(
-                  title: const Text('Failed to add check'),
-                  description: Text(e.message),
-                ),
-              );
-            },
-          );
-        },
-        child: Scaffold(
-          appBar: AppBar(
-            title: const Text(
-              'Add Check',
-              style: TextStyle(
-                fontSize: 16,
-                fontFamily: 'Roboto',
-              ),
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(
+          title: const Text(
+            'Add Check',
+            style: TextStyle(
+              fontSize: 16,
+              fontFamily: 'Roboto',
             ),
           ),
-          body: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Column(
-                children: [
-                  const SizedBox(height: 40),
-                  CheckTypeWidget(
-                    title: 'Clock In',
-                    enabled: check.start == null,
-                    onTap: () => addCheck(CheckType.checkIn),
-                  ),
-                  const SizedBox(height: 20),
-                  CheckTypeWidget(
-                    title: 'Clock Out',
-                    enabled: canEndCheck,
-                    onTap: () => addCheck(CheckType.checkOut),
-                  ),
-                  const SizedBox(height: 20),
-                  CheckTypeWidget(
-                    title: 'Start Break',
-                    enabled: check.start != null && check.breakStart == null,
-                    onTap: () => addCheck(CheckType.breakStart),
-                  ),
-                  const SizedBox(height: 20),
-                  CheckTypeWidget(
-                    title: 'End Break',
-                    enabled: check.breakStart != null && check.breakEnd == null,
-                    onTap: () => addCheck(CheckType.breakEnd),
-                  ),
-                  const Spacer(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Text(
-                          time,
-                          style: const TextStyle(
-                            fontSize: 36,
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w500,
-                          ),
+        ),
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: Column(
+              children: [
+                const SizedBox(height: 40),
+                CheckTypeWidget(
+                  checkType: CheckType.checkIn,
+                  enabled: check.start == null,
+                  check: check,
+                ),
+                const SizedBox(height: 20),
+                CheckTypeWidget(
+                  checkType: CheckType.checkOut,
+                  enabled: canEndCheck,
+                  check: check,
+                ),
+                const SizedBox(height: 20),
+                CheckTypeWidget(
+                  checkType: CheckType.breakStart,
+                  enabled: check.start != null && check.breakStart == null,
+                  check: check,
+                ),
+                const SizedBox(height: 20),
+                CheckTypeWidget(
+                  checkType: CheckType.breakEnd,
+                  enabled: check.breakStart != null && check.breakEnd == null,
+                  check: check,
+                ),
+                const Spacer(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: Text(
+                        time,
+                        style: const TextStyle(
+                          fontSize: 36,
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
-                      Flexible(
-                        child: Text(
-                          amOrPm,
-                          style: const TextStyle(
-                            fontSize: 36,
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w500,
-                          ),
+                    ),
+                    Flexible(
+                      child: Text(
+                        amOrPm,
+                        style: const TextStyle(
+                          fontSize: 36,
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
-                    ],
-                  ),
-                  const Spacer(),
-                ],
-              ),
+                    ),
+                  ],
+                ),
+                const Spacer(),
+              ],
             ),
           ),
         ),
@@ -209,15 +128,15 @@ class _AddCheckScreenState extends State<AddCheckScreen> {
 
 class CheckTypeWidget extends StatelessWidget {
   const CheckTypeWidget({
-    required this.title,
+    required this.checkType,
+    required this.check,
     super.key,
     this.enabled = true,
-    this.onTap,
   });
 
-  final String title;
+  final CheckType checkType;
   final bool enabled;
-  final void Function()? onTap;
+  final Check check;
 
   @override
   Widget build(BuildContext context) => AbsorbPointer(
@@ -232,34 +151,9 @@ class CheckTypeWidget extends StatelessWidget {
                 context: context,
                 builder: (context) => Container(
                   width: double.infinity,
+                  height: context.height / 2,
                   padding: const EdgeInsets.all(20),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      GestureDetector(
-                        onTap: onTap,
-                        child: Lottie.asset(Assets.lottie.nfc),
-                      ),
-                      const Text(
-                        'Tap the NFC reader',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      const SizedBox(height: 40),
-                      ShadButton.destructive(
-                        width: double.infinity,
-                        size: ShadButtonSize.lg,
-                        onPressed: () => context.router.maybePop(),
-                        child: const Text('Cancel'),
-                      ),
-                      SizedBox(
-                        height: context.bottomPadding,
-                      ),
-                    ],
-                  ),
+                  child: AddCheckModalSheet(checkType: checkType, check: check),
                 ),
               );
             },
@@ -278,7 +172,7 @@ class CheckTypeWidget extends StatelessWidget {
                   ),
                   const SizedBox(width: 8),
                   Text(
-                    title,
+                    checkType.name,
                     style: const TextStyle(
                       fontSize: 20,
                       fontFamily: 'Roboto',

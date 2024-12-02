@@ -16,7 +16,7 @@ class CheckWidget extends StatelessWidget {
     // format date time to 09:00 AM
     final String date = DateFormat('h:mm a').format(checkDetails.time ?? DateTime.now());
     final Color color = checkDetails.color;
-    Color? adaptiveColor = context.isDarkMode? null : color;
+    final Color? adaptiveColor = context.isDarkMode? null : color;
 
     return Container(
       decoration: BoxDecoration(
