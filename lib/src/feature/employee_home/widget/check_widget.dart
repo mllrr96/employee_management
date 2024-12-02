@@ -14,15 +14,16 @@ class CheckWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // format date time to 09:00 AM
-    final String date = DateFormat('h:mm a').format(checkDetails.time ?? DateTime.now());
+    final String date =
+        DateFormat('h:mm a').format(checkDetails.time ?? DateTime.now());
     final Color color = checkDetails.color;
-    final Color? adaptiveColor = context.isDarkMode? null : color;
+    final Color? adaptiveColor = context.isDarkMode ? null : color;
 
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
-        border:context.isDarkMode?  Border.all(color: Colors.grey) : null,
-        color:context.isDarkMode ? null :  const Color(0xffF6F5FB),
+        border: context.isDarkMode ? Border.all(color: Colors.grey) : null,
+        color: context.isDarkMode ? null : const Color(0xffF6F5FB),
       ),
       height: 128,
       padding: const EdgeInsets.all(20),
@@ -36,7 +37,7 @@ class CheckWidget extends StatelessWidget {
             children: [
               Icon(
                 Icons.person,
-                color:adaptiveColor,
+                color: adaptiveColor,
               ),
               const SizedBox(width: 8),
               Flexible(
@@ -67,6 +68,51 @@ class CheckWidget extends StatelessWidget {
   }
 }
 
+class CheckDetailsBottomSheet extends StatelessWidget {
+  const CheckDetailsBottomSheet(this.checkDetails);
+
+  final CheckDetails checkDetails;
+
+  @override
+  Widget build(BuildContext context) => Container(
+    width: double.infinity,
+        height: context.height / 2,
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  Icons.person,
+                  color: checkDetails.color,
+                ),
+                const SizedBox(width: 8),
+                Text(
+                  checkDetails.type.name,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: checkDetails.color,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
+            Text(
+              'Time: ${DateFormat('h:mm a').format(checkDetails.time ?? DateTime.now())}',
+              style: TextStyle(
+                fontSize: 16,
+                color: checkDetails.color,
+              ),
+            ),
+          ],
+        ),
+      );
+}
+
 class AddCheckWidget extends StatelessWidget {
   const AddCheckWidget({required this.check, super.key});
 
@@ -79,6 +125,9 @@ class AddCheckWidget extends StatelessWidget {
         child: Ink(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
+            border: context.isDarkMode
+                ? Border.all(color: const Color(0xff479696))
+                : null,
             color: const Color(0xff479696).withOpacity(0.1),
           ),
           height: 128,
