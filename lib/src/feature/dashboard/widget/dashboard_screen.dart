@@ -13,6 +13,7 @@ class DashboardScreen extends StatelessWidget {
   Widget build(BuildContext context) => AnnotatedRegion<SystemUiOverlayStyle>(
         value: context.adaptiveUiOverlay,
         child: AutoTabsScaffold(
+          transitionBuilder: (_,child,__) => child,
           homeIndex: 0,
           routes: [
             if (FirebaseAuth.instance.currentUser!.email!.contains('auis.edu.krd'))

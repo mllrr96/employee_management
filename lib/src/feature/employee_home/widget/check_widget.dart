@@ -39,12 +39,14 @@ class CheckWidget extends StatelessWidget {
                 color:adaptiveColor,
               ),
               const SizedBox(width: 8),
-              Text(
-                checkDetails.type.name,
-                style: TextStyle(
-                  fontSize: 16,
-                  color: adaptiveColor,
-                  fontWeight: FontWeight.bold,
+              Flexible(
+                child: Text(
+                  checkDetails.type.name,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: adaptiveColor,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ],
