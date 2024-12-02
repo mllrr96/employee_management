@@ -1,5 +1,3 @@
-import 'package:employee_management/src/feature/initialization/model/dependencies_container.dart';
-import 'package:employee_management/src/feature/initialization/widget/dependencies_scope.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -15,7 +13,6 @@ class TestWidgetController {
   Future<void> pumpWidget(
     Widget widget, {
     bool wrapWithMaterialApp = true,
-    DependenciesContainer? dependencies,
   }) async {
     var child = widget;
 
@@ -23,9 +20,6 @@ class TestWidgetController {
       child = MaterialApp(home: child);
     }
 
-    if (dependencies != null) {
-      child = DependenciesScope(dependencies: dependencies, child: child);
-    }
 
     await tester.pumpWidget(child);
   }

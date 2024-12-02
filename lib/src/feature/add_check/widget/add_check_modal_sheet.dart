@@ -107,12 +107,13 @@ class _AddCheckModalSheetState extends State<AddCheckModalSheet> {
                   );
                 },
                 child: state.maybeMap(
-                    loading: (_)=> LoadingAnimationWidget.threeArchedCircle(
-                      color: Colors.blue,
-                      size: 50,
-                    ),
-                    error: (_)=> const Text('Error occurred'),
-                    orElse: ()=>  Lottie.asset(Assets.lottie.nfc)),
+                  loading: (_) => LoadingAnimationWidget.threeArchedCircle(
+                    color: Colors.blue,
+                    size: 50,
+                  ),
+                  error: (_) => const Text('Error occurred'),
+                  orElse: () => Lottie.asset(Assets.lottie.nfc),
+                ),
               ),
             ),
             // const Spacer(),

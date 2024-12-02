@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:employee_management/src/core/utils/extensions/context_extension.dart';
+import 'package:employee_management/src/core/widget/employee_icons_icons.dart';
 import 'package:employee_management/src/feature/add_check/widget/add_check_modal_sheet.dart';
 import 'package:employee_management/src/feature/employee_home/bloc/check_bloc.dart';
 import 'package:employee_management/src/feature/employee_home/model/check.dart';
@@ -54,6 +55,7 @@ class _AddCheckScreenState extends State<AddCheckScreen> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
+        backgroundColor: Theme.of(context).colorScheme.surface,
         appBar: AppBar(
           title: const Text(
             'Add Check',
@@ -138,6 +140,23 @@ class CheckTypeWidget extends StatelessWidget {
   final bool enabled;
   final Check check;
 
+  IconData get icon {
+    switch (checkType) {
+      case CheckType.checkIn:
+        return Icons.alarm;
+      case CheckType.checkOut:
+        return Icons.alarm_off;
+      case CheckType.breakStart:
+        return EmployeeIcons.alarm_sleep;
+      case CheckType.breakEnd:
+        return EmployeeIcons.alarm_sleep;
+      case CheckType.done:
+        return Icons.alarm;
+      case CheckType.unknown:
+        return Icons.alarm;
+    }
+  }
+
   @override
   Widget build(BuildContext context) => AbsorbPointer(
         absorbing: !enabled,
@@ -162,13 +181,17 @@ class CheckTypeWidget extends StatelessWidget {
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
-                color: const Color(0xffF6F5FB),
+                color: context.isDarkMode
+                    ? enabled
+                        ? Theme.of(context).scaffoldBackgroundColor
+                        : Colors.black12
+                    : const Color(0xffF6F5FB),
               ),
               child: Row(
                 children: [
-                  const Icon(
-                    Icons.alarm,
-                    color: Color(0xff403572),
+                  Icon(
+                    icon,
+                    color: const Color(0xff403572),
                   ),
                   const SizedBox(width: 8),
                   Text(

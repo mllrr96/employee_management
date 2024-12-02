@@ -17,27 +17,30 @@
 ///         License:   SIL (https://github.com/FortAwesome/Font-Awesome/blob/master/LICENSE.txt)
 ///         Homepage:  http://fortawesome.github.com/Font-Awesome/
 ///
-// ignore_for_file: constant_identifier_names
+// ignore_for_file: avoid_redundant_argument_values, constant_identifier_names
 
 library;
 import 'package:flutter/widgets.dart';
+
 class EmployeeIcons {
   EmployeeIcons._();
 
   static const _kFontFam = 'EmployeeIcons';
+  static const String? _kFontPkg = null;
 
   static const IconData report = IconData(0xe800, fontFamily: _kFontFam);
-  static const IconData calendar = IconData(0xe801, fontFamily: _kFontFam);
-  static const IconData admin = IconData(0xe802, fontFamily: _kFontFam);
-  static const IconData notification = IconData(0xe803, fontFamily: _kFontFam);
-  static const IconData employee_group = IconData(0xe804, fontFamily: _kFontFam);
-  static const IconData schedule = IconData(0xe805, fontFamily: _kFontFam);
-  static const IconData settings = IconData(0xe806, fontFamily: _kFontFam);
-  static const IconData excel = IconData(0xe807, fontFamily: _kFontFam);
-  static const IconData home = IconData(0xe808, fontFamily: _kFontFam);
-  static const IconData profile = IconData(0xe809, fontFamily: _kFontFam);
-  static const IconData electricity_outline = IconData(0xe80a, fontFamily: _kFontFam);
-  static const IconData profile_bold = IconData(0xe80b, fontFamily: _kFontFam);
-  static const IconData stocks = IconData(0xe80c, fontFamily: _kFontFam);
-  static const IconData money_check_alt = IconData(0xf53d, fontFamily: _kFontFam);
+  static const IconData calendar = IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData admin = IconData(0xe802, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData notification = IconData(0xe803, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData employee_group = IconData(0xe804, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData schedule = IconData(0xe805, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData settings = IconData(0xe806, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData excel = IconData(0xe807, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData home = IconData(0xe808, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData profile = IconData(0xe809, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData electricity_outline = IconData(0xe80a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData profile_bold = IconData(0xe80b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData stocks = IconData(0xe80c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData alarm_sleep = IconData(0xe80d, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData money_check_alt = IconData(0xf53d, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }

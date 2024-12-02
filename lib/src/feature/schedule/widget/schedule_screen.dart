@@ -15,6 +15,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
+        backgroundColor: Theme.of(context).colorScheme.surface,
         appBar: AppBar(
           title: const Text(
             'Schedule',
@@ -48,7 +49,6 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
               leading: Icon(Icons.alarm_off),
               title: Text('Work ends at 6:00 PM'),
             ),
-
           ],
         ),
       );
