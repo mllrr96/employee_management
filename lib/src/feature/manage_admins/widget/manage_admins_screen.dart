@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:employee_management/src/core/routes/app_route.gr.dart';
+import 'package:employee_management/src/core/widget/employee_icons_icons.dart';
 import 'package:employee_management/src/feature/manage_admins/model/admin_model.dart';
 import 'package:employee_management/src/feature/manage_admins/widget/admin_info_screen.dart';
 import 'package:flutter/material.dart';
@@ -47,6 +48,14 @@ class _ManageAdminsScreenState extends State<ManageAdminsScreen> {
               fontFamily: 'Roboto',
             ),
           ),
+          actions: const [
+            Padding(
+              padding: EdgeInsets.all(9.0),
+              child: Icon(EmployeeIcons.admin,
+                color: Color(0xffFF5648),
+              ),
+            ),
+          ],
         ),
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () => context.pushRoute(AddAdminRoute()),
