@@ -21,23 +21,13 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: AddCheckRoute.page),
         AutoRoute(page: UpdateProfileRoute.page),
         AutoRoute(page: ChangePasswordRoute.page),
-        // AutoRoute(page: SelectInstructorsRoute.page),
 
         AutoRoute(page: GenerateReportsRoute.page),
         AutoRoute(page: ReportsPreviewRoute.page),
+        AutoRoute(page: ManageEmployeesRoute.page),
+        AutoRoute(page: ManageAdminsRoute.page),
+        AutoRoute(page: ManageScheduleRoute.page),
+        AutoRoute(page: AddAdminRoute.page),
+        AutoRoute(page: AddEmployeeRoute.page),
       ];
-
-// @override
-// List<AutoRouteGuard> get guards => [
-//       AutoRouteGuard.simple(
-//         (resolver, router) {
-//           final isAuthenticated = getIt<SupabaseClient>().auth.currentSession != null;
-//           if (isAuthenticated || resolver.routeName == SignInRoute.name) {
-//             resolver.next();
-//           } else {
-//             router.pushAll([SignInRoute()]);
-//           }
-//         },
-//       ),
-//     ];
 }

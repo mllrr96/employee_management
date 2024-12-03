@@ -7,6 +7,7 @@ import 'package:employee_management/src/feature/add_check/widget/add_check_modal
 import 'package:employee_management/src/feature/employee_home/bloc/check_bloc.dart';
 import 'package:employee_management/src/feature/employee_home/model/check.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_nfc_kit/flutter_nfc_kit.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
 @RoutePage()
@@ -164,8 +165,44 @@ class CheckTypeWidget extends StatelessWidget {
           opacity: enabled ? 1 : 0.5,
           child: InkWell(
             borderRadius: BorderRadius.circular(15),
-            onTap: () {
-              showModalBottomSheet<String?>(
+            onTap: () async {
+              // check for nfc availability
+              final availability = await FlutterNfcKit.nfcAvailability;
+              if (availability == NFCAvailability.disabled) {
+                if (!context.mounted) return;
+                ShadToaster.of(context).show(
+                  ShadToast.destructive(
+                    title: const Text('NFC is not available'),
+                    description:
+                        const Text('Please enable NFC to use this feature'),
+                    action: ShadButton.secondary(
+                      onPressed: ShadToaster.of(context).hide,
+                      child: const Text('Dismiss'),
+                    ),
+                  ),
+                );
+                return;
+              }
+
+              if (availability == NFCAvailability.not_supported) {
+                if (!context.mounted) return;
+                ShadToaster.of(context).show(
+                  ShadToast.destructive(
+                    title: const Text('NFC is not supported'),
+                    description: const Text(
+                      'This device does not support NFC. Please use a device that supports NFC to use this feature',
+                    ),
+                    action: ShadButton.secondary(
+                      onPressed: ShadToaster.of(context).hide,
+                      child: const Text('Dismiss'),
+                    ),
+                  ),
+                );
+                return;
+              }
+
+              if (!context.mounted) return;
+              await showModalBottomSheet<String?>(
                 isDismissible: false,
                 context: context,
                 builder: (context) => Container(
@@ -196,10 +233,14 @@ class CheckTypeWidget extends StatelessWidget {
                   const SizedBox(width: 8),
                   Text(
                     checkType.name,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 20,
                       fontFamily: 'Roboto',
-                      color: Color(0xff403572),
+                      color: context.isDarkMode
+                          ? enabled
+                              ? Colors.white
+                              : Colors.grey
+                          : const Color(0xff403572),
                       fontWeight: FontWeight.w500,
                     ),
                   ),
