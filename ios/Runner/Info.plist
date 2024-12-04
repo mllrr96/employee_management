@@ -45,5 +45,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+    <key>com.apple.developer.nfc.readersession.formats</key>
+    <array>
+        <string>NDEF</string>
+    </array>
+    <key>Privacy - NFC Scan Usage Description</key>
+    <string>We use NFC to scan tags for recording employee checks.</string>
 </dict>
 </plist>
