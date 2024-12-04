@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:auto_route/annotations.dart';
 import 'package:employee_management/src/core/utils/extensions/context_extension.dart';
 import 'package:employee_management/src/feature/manage_admins/model/admin_model.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
@@ -40,6 +43,9 @@ class _AddAdminScreenState extends State<AddAdminScreen> {
         onTap: () => FocusScope.of(context).unfocus(),
         child: Scaffold(
           appBar: AppBar(
+            leading: Platform.isIOS
+                ? const CupertinoNavigationBarBackButton()
+                : null,
             title: const Text(
               'Add Admin',
               style: TextStyle(

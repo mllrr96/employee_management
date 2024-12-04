@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:auto_route/annotations.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 @RoutePage()
@@ -8,6 +11,9 @@ class ManageScheduleScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(
+      leading: Platform.isIOS
+          ? const CupertinoNavigationBarBackButton()
+          : null,
       title: const Text(
         'Manage Schedule',
         style: TextStyle(

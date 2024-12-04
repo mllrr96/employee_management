@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:employee_management/src/core/utils/extensions/context_extension.dart';
@@ -6,6 +7,7 @@ import 'package:employee_management/src/core/widget/employee_icons_icons.dart';
 import 'package:employee_management/src/feature/add_check/widget/add_check_modal_sheet.dart';
 import 'package:employee_management/src/feature/employee_home/bloc/check_bloc.dart';
 import 'package:employee_management/src/feature/employee_home/model/check.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_nfc_kit/flutter_nfc_kit.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
@@ -58,6 +60,9 @@ class _AddCheckScreenState extends State<AddCheckScreen> {
   Widget build(BuildContext context) => Scaffold(
         backgroundColor: Theme.of(context).colorScheme.surface,
         appBar: AppBar(
+          leading: Platform.isIOS
+              ? const CupertinoNavigationBarBackButton()
+              : null,
           title: const Text(
             'Add Check',
             style: TextStyle(

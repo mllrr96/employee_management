@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:employee_management/src/core/routes/app_route.gr.dart';
 import 'package:employee_management/src/core/widget/employee_icons_icons.dart';
 import 'package:employee_management/src/feature/manage_admins/model/admin_model.dart';
 import 'package:employee_management/src/feature/manage_admins/widget/admin_info_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 @RoutePage()
@@ -41,6 +44,9 @@ class _ManageAdminsScreenState extends State<ManageAdminsScreen> {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
+          leading: Platform.isIOS
+              ? const CupertinoNavigationBarBackButton()
+              : null,
           title: const Text(
             'Manage Admins',
             style: TextStyle(
