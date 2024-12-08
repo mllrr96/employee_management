@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:auto_route/auto_route.dart';
 import 'package:employee_management/src/core/routes/app_route.gr.dart';
 import 'package:employee_management/src/core/utils/extensions/context_extension.dart';
+import 'package:employee_management/src/core/utils/extensions/string_extension.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
@@ -83,7 +84,7 @@ class _GenerateReportsScreenState extends State<GenerateReportsScreen> {
                     ),
                   ],
                   selectedOptionsBuilder: (BuildContext context, values) =>
-                      Text(values.map((v) => v.capitalize()).join(', ')),
+                      Text(values.map((v) => v.capitalize).join(', ')),
                 ),
             ],
           ),
@@ -100,8 +101,4 @@ class _GenerateReportsScreenState extends State<GenerateReportsScreen> {
           ),
         ),
       );
-}
-
-extension on String {
-  String capitalize() => this[0].toUpperCase() + substring(1);
 }

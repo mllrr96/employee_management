@@ -11,6 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_nfc_kit/flutter_nfc_kit.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:lottie/lottie.dart';
+// ignore: depend_on_referenced_packages
 import 'package:ndef/ndef.dart' as ndef;
 import 'package:shadcn_ui/shadcn_ui.dart';
 
