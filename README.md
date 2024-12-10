@@ -47,7 +47,7 @@ A Flutter-based cross-platform mobile application designed to streamline employe
                 <img src="https://github.com/mllrr96/employee_management/blob/main/screenshots/sc9.png" width="220"/>
             </td>
             <td style="text-align: center">
-                <img src="https://github.com/mllrr96/employee_management/blob/main/screenshots/10.png" width="220"/>
+                <img src="https://github.com/mllrr96/employee_management/blob/main/screenshots/sc10.png" width="220"/>
             </td>
         </tr>
     </table>
