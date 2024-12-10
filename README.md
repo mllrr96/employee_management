@@ -11,65 +11,43 @@ A Flutter-based cross-platform mobile application designed to streamline employe
                 <img src="https://github.com/mllrr96/employee_management/blob/main/screenshots/sc1.png" width="220"/>
             </td>            
             <td style="text-align: center">
-                <img src="schttps://github.com/mllrr96/employee_management/blob/main/screenshots/sc2.png" width="220"/>
+                <img src="https://github.com/mllrr96/employee_management/blob/main/screenshots/sc2.png" width="220"/>
             </td>
             <td style="text-align: center">
-                <img src="schttps://github.com/mllrr96/employee_management/blob/main/screenshots/sc3.png" width="220"/>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: center">
-                <img src="schttps://github.com/mllrr96/employee_management/blob/main/screenshots/sc4.png" width="220"/>
-            </td>            
-            <td style="text-align: center">
-                <img src="schttps://github.com/mllrr96/employee_management/blob/main/screenshots/sc5.png" width="220"/>
-            </td>
-            <td style="text-align: center">
-                <img src="schttps://github.com/mllrr96/employee_management/blob/main/screenshots/sc6.png" width="220"/>
+                <img src="https://github.com/mllrr96/employee_management/blob/main/screenshots/sc3.png" width="220"/>
             </td>
         </tr>
         <tr>
             <td style="text-align: center">
-                <img src="schttps://github.com/mllrr96/employee_management/blob/main/screenshots/sc7.png" width="220"/>
+                <img src="https://github.com/mllrr96/employee_management/blob/main/screenshots/sc4.png" width="220"/>
             </td>            
             <td style="text-align: center">
-                <img src="schttps://github.com/mllrr96/employee_management/blob/main/screenshots/sc7.png" width="220"/>
+                <img src="https://github.com/mllrr96/employee_management/blob/main/screenshots/sc5.png" width="220"/>
             </td>
             <td style="text-align: center">
-                <img src="schttps://github.com/mllrr96/employee_management/blob/main/screenshots/sc8.png" width="220"/>
+                <img src="https://github.com/mllrr96/employee_management/blob/main/screenshots/sc6.png" width="220"/>
             </td>
         </tr>
         <tr>
             <td style="text-align: center">
-                <img src="schttps://github.com/mllrr96/employee_management/blob/main/screenshots/sc8.png" width="220"/>
+                <img src="https://github.com/mllrr96/employee_management/blob/main/screenshots/sc7.png" width="220"/>
             </td>            
             <td style="text-align: center">
-                <img src="schttps://github.com/mllrr96/employee_management/blob/main/screenshots/sc9.png" width="220"/>
+                <img src="https://github.com/mllrr96/employee_management/blob/main/screenshots/sc7.png" width="220"/>
             </td>
             <td style="text-align: center">
-                <img src="schttps://github.com/mllrr96/employee_management/blob/main/screenshots/10.png" width="220"/>
+                <img src="https://github.com/mllrr96/employee_management/blob/main/screenshots/sc8.png" width="220"/>
             </td>
         </tr>
         <tr>
             <td style="text-align: center">
-                <img src="schttps://github.com/mllrr96/employee_management/blob/main/screenshots/discount-1.png" width="220"/>
+                <img src="https://github.com/mllrr96/employee_management/blob/main/screenshots/sc8.png" width="220"/>
             </td>            
             <td style="text-align: center">
-                <img src="schttps://github.com/mllrr96/employee_management/blob/main/screenshots/discount-2.png" width="220"/>
+                <img src="https://github.com/mllrr96/employee_management/blob/main/screenshots/sc9.png" width="220"/>
             </td>
             <td style="text-align: center">
-                <img src="schttps://github.com/mllrr96/employee_management/blob/main/screenshots/discount-3.png" width="220"/>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: center">
-                <img src="schttps://github.com/mllrr96/employee_management/blob/main/screenshots/search-2.png" width="220"/>
-            </td>            
-            <td style="text-align: center">
-                <img src="schttps://github.com/mllrr96/employee_management/blob/main/screenshots/search-3.png" width="220"/>
-            </td>
-            <td style="text-align: center">
-                <img src="schttps://github.com/mllrr96/employee_management/blob/main/screenshots/draft-order-2.png" width="220"/>
+                <img src="https://github.com/mllrr96/employee_management/blob/main/screenshots/10.png" width="220"/>
             </td>
         </tr>
     </table>
